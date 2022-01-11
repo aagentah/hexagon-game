@@ -26,7 +26,7 @@ function Object({ hex, object }) {
   const [player, setPlayer] = useRecoilState(playerState);
 
   const { i, x, y, inputRef } = hex;
-  const { name, type } = object;
+  const { name, type, age } = object;
 
   // useEffect(() => {
   //   //
@@ -47,7 +47,7 @@ function Object({ hex, object }) {
     );
   }
 
-  if (name === "base" && type === "grass") {
+  if (name === "base" && (type === "grass" || age >= 10)) {
     return (
       <img
         className="object"

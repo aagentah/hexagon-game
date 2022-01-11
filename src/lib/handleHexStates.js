@@ -19,6 +19,9 @@ export const handleHexStates = async () => {
     const hex = grid[i];
     const base = _.find(hex?.objects, { name: "base" });
 
+    // Increments age of base
+    base.age = base.age += 1;
+
     // Adds/removes movable & killable state if within moveable area
     if (_.find(movable, { x: hex.x, y: hex.y })) {
       if (base.type === "grass") {
@@ -32,6 +35,8 @@ export const handleHexStates = async () => {
       _.remove(hex.objects, (e) => e.name === "state");
     }
   }
+
+  console.log("grid", grid);
 
   await setRecoil(gridState, grid);
 };

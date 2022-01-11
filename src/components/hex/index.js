@@ -42,11 +42,9 @@ function Hex({ x, y, i }) {
           offsetHeight: inputRef.current.offsetHeight,
           offsetWidth: inputRef.current.offsetWidth,
         },
-        state: null, // 'move', 'attack'
-        // base: "grass",
         objects: [
           { name: "state", type: null },
-          { name: "base", type: "grass" },
+          { name: "base", type: "grass", age: 0 },
         ],
       },
     ]);

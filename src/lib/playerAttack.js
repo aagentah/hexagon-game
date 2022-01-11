@@ -15,7 +15,7 @@ const postAnimation = async (i, x, y) => {
 
   // Kills grass
   _.remove(grid[i].objects, (e) => e.name === "base");
-  grid[i].objects.push({ name: "base", type: "dirt" });
+  grid[i].objects.push({ name: "base", type: "dirt", age: 0 });
   game.round = game.round + 1;
 
   // Resets animations in the hexPlayer

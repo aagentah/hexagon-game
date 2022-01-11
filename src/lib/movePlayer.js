@@ -13,8 +13,11 @@ const postAnimation = async (i, x, y) => {
   const game = _.cloneDeep(getRecoil(gameState));
   const currentPos = player.position;
   const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
+  const hexBase = _.find(grid[currentPos].objects, { name: "base" });
 
   // Asigns new player position
+  _.remove(grid[i].objects, (e) => e.name === "base");
+  grid[i].objects.push({ name: "base", type: "dirt", age: 0 });
   player.position = i;
   grid[i].objects.push(hexPlayer);
   _.remove(grid[currentPos].objects, (e) => e.name === "player");
