@@ -8,15 +8,15 @@ import { playerState } from "../state/player";
 export const handleHexStates = async () => {
   const honeycomb = getRecoil(honeycombState);
   const player = getRecoil(playerState);
-  const newGrid = _.cloneDeep(getRecoil(gridState));
+  const grid = _.cloneDeep(getRecoil(gridState));
+  const playerPosHex = grid[player.position];
+  const movable = honeycomb.grid.neighborsOf(
+    honeycomb.hex(playerPosHex.x, playerPosHex.y)
+  );
 
   // Loops through grid and sets state
-  const playerPosGrid = newGrid[player.position];
-  const playerPosHex = honeycomb.hex(playerPosGrid.x, playerPosGrid.y);
-  const movable = honeycomb.grid.neighborsOf(playerPosHex);
-
-  for (let i = 0; i < newGrid.length; i++) {
-    const hex = newGrid[i];
+  for (let i = 0; i < grid.length; i++) {
+    const hex = grid[i];
 
     // Adds/removes movable state if within moveable area
     if (_.find(movable, { x: hex.x, y: hex.y })) {
@@ -26,5 +26,5 @@ export const handleHexStates = async () => {
     }
   }
 
-  await setRecoil(gridState, newGrid);
+  await setRecoil(gridState, grid);
 };

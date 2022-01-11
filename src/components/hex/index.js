@@ -53,12 +53,12 @@ function Hex({ x, y, i }) {
   //   const newObjects = _.cloneDeep(curr.objects);
   //   newObjects.push({ name: "tree" });
   //
-  //   const newGame = replaceItemAtIndex(grid, i, {
+  //   const game = replaceItemAtIndex(grid, i, {
   //     ...curr,
   //     objects: newObjects,
   //   });
   //
-  //   setGrid(newGame);
+  //   setGrid(game);
   // };
 
   return (

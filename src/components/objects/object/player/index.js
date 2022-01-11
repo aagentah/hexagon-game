@@ -23,12 +23,11 @@ function Player({ hex, object }) {
   const [offsetTop, setOffsetTop] = useState(inputRef.offsetTop);
   const [offsetLeft, setOffsetLeft] = useState(inputRef.offsetLeft);
 
+  // Animates the Player image
   useEffect(() => {
-    console.log("animations", animations);
-    if (animations.active) {
-      setOffsetLeft(animations.offsetLeft);
-      setOffsetTop(animations.offsetTop);
-    }
+    if (!animations.active) return;
+    setOffsetLeft(animations.offsetLeft);
+    setOffsetTop(animations.offsetTop);
   }, [animations.active]);
 
   return (
