@@ -22,14 +22,8 @@ import trees1 from "../../images/trees-1.png";
 
 function Hex({ x, y, i }) {
   const inputRef = useRef();
-  // const [hasRendered, setHasRendered] = useState(false);
   const [grid, setGrid] = useRecoilState(gridState);
-  // const setGrid = useSetRecoilState(gridState);
-
-  // const baseClass = classnames({
-  //           "btn": true,
-  //            "btn__active": isActive;
-  //          )}
+  const curr = grid[i];
 
   function replaceItemAtIndex(arr, index, newValue) {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
@@ -48,39 +42,35 @@ function Hex({ x, y, i }) {
           offsetHeight: inputRef.current.offsetHeight,
           offsetWidth: inputRef.current.offsetWidth,
         },
+        state: null, // 'move', 'attack'
         base: "grass",
-        objects: [],
+        objects: [{ name: "state", type: null }],
       },
     ]);
   }, [i]);
 
-  const setObject = () => {
-    const newObjects = _.cloneDeep(grid[i].objects);
-    newObjects.push({ name: "tree" });
-
-    const newGame = replaceItemAtIndex(grid, i, {
-      ...grid[i],
-      objects: newObjects,
-    });
-
-    setGrid(newGame);
-  };
-
-  // const handleBaseClass = () => {
-  //   if (grid[i]?.base) {
-  //     return
-  //     console.log("grid[i].base", grid[i].base);
-  //   }
+  // const setObject = () => {
+  //   const newObjects = _.cloneDeep(curr.objects);
+  //   newObjects.push({ name: "tree" });
+  //
+  //   const newGame = replaceItemAtIndex(grid, i, {
+  //     ...curr,
+  //     objects: newObjects,
+  //   });
+  //
+  //   setGrid(newGame);
   // };
 
   return (
     <>
       <div
         style={{ backgroundImage: `url(${grass1})` }}
-        className={`hex  base--${grid[i]?.base && grid[i]?.base}`}
+        className={`hex  base--${curr?.base}`}
         ref={inputRef}
-        data-xyi={i}
-        onClick={setObject}
+        data-x={x}
+        data-y={y}
+        data-i={i}
+        // onClick={setObject}
       ></div>
     </>
   );

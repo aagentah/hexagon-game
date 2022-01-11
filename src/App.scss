@@ -44,10 +44,22 @@
 }
 
 .hex {
+  position: relative;
   background-color: #94c85c;
+  // transition: transform 0.3s ease-in-out;
 }
 
-.grass {
+// .hex:hover {
+//   transform: scale(1.05);
+// }
+
+.outline {
+  &--red {
+    // border: 1px solid red;
+  }
+}
+
+.object {
   position: absolute;
   width: 80px;
 }

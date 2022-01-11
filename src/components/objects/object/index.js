@@ -15,23 +15,24 @@ import { gridState } from "../../../state/grid";
 import { gameState } from "../../../state/game";
 import { playerState } from "../../../state/player";
 
+import { movePlayer } from "../../../lib/movePlayer";
+
 function Object({ hex, object }) {
   const [grid, setGrid] = useRecoilState(gridState);
   const [game, setGame] = useRecoilState(gameState);
   const [player, setPlayer] = useRecoilState(playerState);
 
-  const { inputRef } = hex;
-  const { name } = object;
+  const { i, x, y, inputRef } = hex;
+  const { name, type } = object;
 
   // useEffect(() => {
   //   //
   // }, [i]);
 
   if (name === "player") {
-    console.log("player", player);
     return (
       <img
-        className="grass grass--2"
+        className="object"
         src={require("../../../images/player.gif")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
@@ -42,10 +43,22 @@ function Object({ hex, object }) {
   if (name === "tree") {
     return (
       <img
-        className="grass grass--2"
+        className="object"
         src={require("../../../images/trees-1.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+      />
+    );
+  }
+
+  if (name === "state" && type === "movable") {
+    return (
+      <img
+        className="object"
+        src={require("../../../images/hex-green.png")}
+        alt="logo"
+        style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+        onClick={() => movePlayer(x, y)}
       />
     );
   }

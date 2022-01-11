@@ -19,6 +19,7 @@ import { gridState } from "./state/grid";
 import { gameState } from "./state/game";
 
 import { spawnPlayer } from "./lib/spawnPlayer";
+import { handleHexStates } from "./lib/handleHexStates";
 
 import logo from "./logo.svg";
 import "./App.scss";
@@ -28,28 +29,19 @@ function App() {
   const [grid, setGrid] = useRecoilState(gridState);
   const [game, setGame] = useRecoilState(gameState);
   const [hasRendered, setHasRendered] = useState(false);
+  const [hasInitRound, setHasInitRound] = useState(false);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!grid.length) return;
 
     // Spawn player
     if (game.round === 0) {
-      spawnPlayer({ grid, game });
+      await spawnPlayer({ grid, game });
     }
-    // const gridArr = () => {
-    //   const arr = [];
-    //   for (let i = 0; i < honeycomb.grid.length; i++) {
-    //     arr.push(honeycomb.grid[i]);
-    //   }
-    //
-    //   return arr;
-    // };
-    //
-    // const newGame = _.cloneDeep(game);
-    // newGame.grid = gridArr();
-    // setGame(newGame);
 
-    //
+    await handleHexStates();
+
+    setHasInitRound(true);
   }, [hasRendered, game.round]);
 
   useEffect(() => {
@@ -90,12 +82,11 @@ function App() {
             </div>
           </div>
 
-          {grid.length && (
+          {hasInitRound && (
             <div id="hexGridObjects">
-              {grid.length &&
-                grid.map((hex, i) => {
-                  return <Objects key={i} hex={hex} />;
-                })}
+              {grid.map((hex, i) => {
+                return <Objects key={i} hex={hex} />;
+              })}
             </div>
           )}
         </div>
