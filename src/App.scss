@@ -45,8 +45,17 @@
 
 .hex {
   position: relative;
-  background-color: #94c85c;
   // transition: transform 0.3s ease-in-out;
+}
+
+.base {
+  &--grass {
+    background-color: #94c85c;
+  }
+
+  &--dirt {
+    background-color: #806854;
+  }
 }
 
 // .hex:hover {

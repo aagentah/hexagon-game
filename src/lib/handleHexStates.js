@@ -17,10 +17,17 @@ export const handleHexStates = async () => {
   // Loops through grid and sets state
   for (let i = 0; i < grid.length; i++) {
     const hex = grid[i];
+    const base = _.find(hex?.objects, { name: "base" });
 
-    // Adds/removes movable state if within moveable area
+    // Adds/removes movable & killable state if within moveable area
     if (_.find(movable, { x: hex.x, y: hex.y })) {
-      hex.objects.push({ name: "state", type: "movable" });
+      if (base.type === "grass") {
+        hex.objects.push({ name: "state", type: "killable" });
+      }
+
+      if (base.type === "dirt") {
+        hex.objects.push({ name: "state", type: "movable" });
+      }
     } else {
       _.remove(hex.objects, (e) => e.name === "state");
     }

@@ -43,8 +43,11 @@ function Hex({ x, y, i }) {
           offsetWidth: inputRef.current.offsetWidth,
         },
         state: null, // 'move', 'attack'
-        base: "grass",
-        objects: [{ name: "state", type: null }],
+        // base: "grass",
+        objects: [
+          { name: "state", type: null },
+          { name: "base", type: "grass" },
+        ],
       },
     ]);
   }, [i]);
@@ -61,11 +64,13 @@ function Hex({ x, y, i }) {
   //   setGrid(game);
   // };
 
+  const base = _.find(curr?.objects, { name: "base" });
+
   return (
     <>
       <div
-        style={{ backgroundImage: `url(${grass1})` }}
-        className={`hex  base--${curr?.base}`}
+        // style={{ backgroundImage: `url(${grass1})` }}
+        className={`hex  base--${base?.type && base.type}`}
         ref={inputRef}
         data-x={x}
         data-y={y}

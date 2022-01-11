@@ -18,6 +18,7 @@ import { gameState } from "../../../state/game";
 import { playerState } from "../../../state/player";
 
 import { movePlayer } from "../../../lib/movePlayer";
+import { playerAttack } from "../../../lib/playerAttack";
 
 function Object({ hex, object }) {
   const [grid, setGrid] = useRecoilState(gridState);
@@ -46,6 +47,17 @@ function Object({ hex, object }) {
     );
   }
 
+  if (name === "base" && type === "grass") {
+    return (
+      <img
+        className="object"
+        src={require("../../../images/grass-1.png")}
+        alt="logo"
+        style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+      />
+    );
+  }
+
   if (name === "state" && type === "movable") {
     return (
       <img
@@ -53,7 +65,19 @@ function Object({ hex, object }) {
         src={require("../../../images/hex-green.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
-        onClick={() => movePlayer(x, y)}
+        onClick={() => movePlayer(i, x, y)}
+      />
+    );
+  }
+
+  if (name === "state" && type === "killable") {
+    return (
+      <img
+        className="object"
+        src={require("../../../images/hex-red.png")}
+        alt="logo"
+        style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+        onClick={() => playerAttack(i, x, y)}
       />
     );
   }
