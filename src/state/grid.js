@@ -6,7 +6,7 @@ import {
   useRecoilValue,
 } from "recoil";
 
-export const gameState = atom({
-  key: "gameState", // unique ID (with respect to other atoms/selectors)
+export const gridState = atom({
+  key: "gridState", // unique ID (with respect to other atoms/selectors)
   default: [], // default value (aka initial value)
 });

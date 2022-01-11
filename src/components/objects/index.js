@@ -11,12 +11,12 @@ import {
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
-import { gameState } from "../../state/game";
+import { gridState } from "../../state/grid";
 
 import Object from "./object";
 
 function Objects({ hex }) {
-  // const [game, setGame] = useRecoilState(gameState);
+  // const [game, setGame] = useRecoilState(gridState);
 
   return (
     <>

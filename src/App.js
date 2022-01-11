@@ -9,7 +9,7 @@ import {
 } from "recoil";
 import * as Honeycomb from "honeycomb-grid";
 import { honeycombState } from "./state/honeycomb";
-import { gameState } from "./state/game";
+import { gridState } from "./state/grid";
 import * as _ from "lodash";
 
 import logo from "./logo.svg";
@@ -21,7 +21,7 @@ import Objects from "./components/objects";
 function App() {
   const [hasRendered, setHasRendered] = useState(false);
   const [honeycomb, setHoneycomb] = useRecoilState(honeycombState);
-  const [game, setGame] = useRecoilState(gameState);
+  const [grid, setGrid] = useRecoilState(gridState);
 
   useEffect(() => {
     // const gridArr = () => {
@@ -74,10 +74,10 @@ function App() {
             </div>
           </div>
 
-          {game.length && (
+          {grid.length && (
             <div id="hexGridObjects">
-              {game.length &&
-                game.map((hex, i) => {
+              {grid.length &&
+                grid.map((hex, i) => {
                   return <Objects key={i} hex={hex} />;
                 })}
             </div>

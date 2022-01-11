@@ -9,10 +9,12 @@ import {
   useSetRecoilState,
 } from "recoil";
 
+import classNames from "classnames";
+
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
-import { gameState } from "../../state/game";
+import { gridState } from "../../state/grid";
 
 import Grass from "./grass";
 
@@ -23,16 +25,20 @@ import trees1 from "../../images/trees-1.png";
 function Hex({ x, y, i }) {
   const inputRef = useRef();
   // const [hasRendered, setHasRendered] = useState(false);
-  const [game, setGame] = useRecoilState(gameState);
-  // const setGame = useSetRecoilState(gameState);
+  const [grid, setGrid] = useRecoilState(gridState);
+  // const setGrid = useSetRecoilState(gridState);
+
+  // const baseClass = classnames({
+  //           "btn": true,
+  //            "btn__active": isActive;
+  //          )}
 
   function replaceItemAtIndex(arr, index, newValue) {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
   }
 
   useEffect(() => {
-    console.log("inputRef", inputRef);
-    setGame((old) => [
+    setGrid((old) => [
       ...old,
       {
         i,
@@ -42,27 +48,36 @@ function Hex({ x, y, i }) {
           offsetLeft: inputRef.current.offsetLeft,
           offsetTop: inputRef.current.offsetTop,
         },
-        objects: [{ name: "a" }],
+        base: "grass",
+        objects: [],
       },
     ]);
   }, [i]);
 
   const setObject = () => {
-    const newObjects = _.cloneDeep(game[i].objects);
-    newObjects.push({ name: "b" });
+    const newObjects = _.cloneDeep(grid[i].objects);
+    newObjects.push({ name: "tree" });
 
-    const newGame = replaceItemAtIndex(game, i, {
-      ...game[i],
+    const newGame = replaceItemAtIndex(grid, i, {
+      ...grid[i],
       objects: newObjects,
     });
 
-    setGame(newGame);
+    setGrid(newGame);
   };
+
+  // const handleBaseClass = () => {
+  //   if (grid[i]?.base) {
+  //     return
+  //     console.log("grid[i].base", grid[i].base);
+  //   }
+  // };
 
   return (
     <>
       <div
-        className="hex"
+        style={{ backgroundImage: `url(${grass1})` }}
+        className={`hex  base--${grid[i]?.base && grid[i]?.base}`}
         ref={inputRef}
         data-xyi={i}
         onClick={setObject}
