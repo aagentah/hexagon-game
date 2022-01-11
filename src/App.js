@@ -8,22 +8,34 @@ import {
   useRecoilValue,
 } from "recoil";
 import * as Honeycomb from "honeycomb-grid";
-import { honeycombState } from "./state/honeycomb";
-import { gridState } from "./state/grid";
-import * as _ from "lodash";
 
-import logo from "./logo.svg";
-import "./App.scss";
+import * as _ from "lodash";
 
 import Hex from "./components/hex";
 import Objects from "./components/objects";
 
+import { honeycombState } from "./state/honeycomb";
+import { gridState } from "./state/grid";
+import { gameState } from "./state/game";
+
+import { spawnPlayer } from "./lib/spawnPlayer";
+
+import logo from "./logo.svg";
+import "./App.scss";
+
 function App() {
-  const [hasRendered, setHasRendered] = useState(false);
   const [honeycomb, setHoneycomb] = useRecoilState(honeycombState);
   const [grid, setGrid] = useRecoilState(gridState);
+  const [game, setGame] = useRecoilState(gameState);
+  const [hasRendered, setHasRendered] = useState(false);
 
   useEffect(() => {
+    if (!grid.length) return;
+
+    // Spawn player
+    if (game.round === 0) {
+      spawnPlayer({ grid, game });
+    }
     // const gridArr = () => {
     //   const arr = [];
     //   for (let i = 0; i < honeycomb.grid.length; i++) {
@@ -37,8 +49,12 @@ function App() {
     // newGame.grid = gridArr();
     // setGame(newGame);
 
-    setHasRendered(true);
-  }, [hasRendered]);
+    //
+  }, [hasRendered, game.round]);
+
+  useEffect(() => {
+    if (grid.length) setHasRendered(true);
+  }, [grid]);
 
   // useEffect(() => {
   //   console.log("game", game);

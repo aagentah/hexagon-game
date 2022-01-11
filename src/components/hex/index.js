@@ -16,8 +16,6 @@ import * as _ from "lodash";
 
 import { gridState } from "../../state/grid";
 
-import Grass from "./grass";
-
 import grass1 from "../../images/grass-1.png";
 import grass2 from "../../images/grass-2.png";
 import trees1 from "../../images/trees-1.png";
@@ -47,6 +45,8 @@ function Hex({ x, y, i }) {
         inputRef: {
           offsetLeft: inputRef.current.offsetLeft,
           offsetTop: inputRef.current.offsetTop,
+          offsetHeight: inputRef.current.offsetHeight,
+          offsetWidth: inputRef.current.offsetWidth,
         },
         base: "grass",
         objects: [],

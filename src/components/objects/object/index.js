@@ -12,18 +12,38 @@ import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
 import { gridState } from "../../../state/grid";
-
-import trees1 from "../../../images/trees-1.png";
+import { gameState } from "../../../state/game";
+import { playerState } from "../../../state/player";
 
 function Object({ hex, object }) {
+  const [grid, setGrid] = useRecoilState(gridState);
+  const [game, setGame] = useRecoilState(gameState);
+  const [player, setPlayer] = useRecoilState(playerState);
+
   const { inputRef } = hex;
   const { name } = object;
+
+  // useEffect(() => {
+  //   //
+  // }, [i]);
+
+  if (name === "player") {
+    console.log("player", player);
+    return (
+      <img
+        className="grass grass--2"
+        src={require("../../../images/player.gif")}
+        alt="logo"
+        style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+      />
+    );
+  }
 
   if (name === "tree") {
     return (
       <img
         className="grass grass--2"
-        src={trees1}
+        src={require("../../../images/trees-1.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
       />
