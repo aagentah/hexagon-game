@@ -14,7 +14,16 @@ export const spawnPlayer = async () => {
   const spawnPoint = centerHexes[_.random(3)];
 
   newPlayer.position = spawnPoint;
-  newGrid[spawnPoint].objects.push({ name: "player" });
+
+  newGrid[spawnPoint].objects.push({
+    name: "player",
+    animations: {
+      active: false,
+      time: "300",
+      offsetLeft: null,
+      offsetTop: null,
+    },
+  });
 
   await setRecoil(playerState, newPlayer);
   await setRecoil(gridState, newGrid);

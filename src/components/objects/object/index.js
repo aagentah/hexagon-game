@@ -11,6 +11,8 @@ import {
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
+import Player from "./player";
+
 import { gridState } from "../../../state/grid";
 import { gameState } from "../../../state/game";
 import { playerState } from "../../../state/player";
@@ -30,14 +32,7 @@ function Object({ hex, object }) {
   // }, [i]);
 
   if (name === "player") {
-    return (
-      <img
-        className="object"
-        src={require("../../../images/player.gif")}
-        alt="logo"
-        style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
-      />
-    );
+    return <Player hex={hex} object={object} />;
   }
 
   if (name === "tree") {
