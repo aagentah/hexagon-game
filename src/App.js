@@ -1,3 +1,5 @@
+import React, { useRef, useState, useEffect } from "react";
+
 import {
   RecoilRoot,
   atom,
@@ -7,27 +9,40 @@ import {
 } from "recoil";
 import * as Honeycomb from "honeycomb-grid";
 import { honeycombState } from "./state/honeycomb";
+import { gameState } from "./state/game";
+import * as _ from "lodash";
 
 import logo from "./logo.svg";
 import "./App.scss";
 
 import Hex from "./components/hex";
+import Objects from "./components/objects";
 
 function App() {
+  const [hasRendered, setHasRendered] = useState(false);
   const [honeycomb, setHoneycomb] = useRecoilState(honeycombState);
+  const [game, setGame] = useRecoilState(gameState);
 
-  console.log("honeycomb", honeycomb);
-  // console.log("neighborsOf", honeycomb.grid.neighborsOf(honeycomb.hex(3, 4)));
-  // console.log("co", honeycomb.hex(2).coordinates());
+  useEffect(() => {
+    // const gridArr = () => {
+    //   const arr = [];
+    //   for (let i = 0; i < honeycomb.grid.length; i++) {
+    //     arr.push(honeycomb.grid[i]);
+    //   }
+    //
+    //   return arr;
+    // };
+    //
+    // const newGame = _.cloneDeep(game);
+    // newGame.grid = gridArr();
+    // setGame(newGame);
 
-  const gridArr = () => {
-    const arr = [];
-    for (let i = 0; i < honeycomb.grid.length; i++) {
-      arr.push(honeycomb.grid[i]);
-    }
+    setHasRendered(true);
+  }, [hasRendered]);
 
-    return arr;
-  };
+  // useEffect(() => {
+  //   console.log("game", game);
+  // }, [game]);
 
   return (
     <div className="App">
@@ -52,11 +67,21 @@ function App() {
         <div id="hexGrid">
           <div className="hexCrop">
             <div className="hexGrid">
-              {gridArr().map((coords, i) => {
-                return <Hex key={i} x={coords.x} y={coords.y} i={i} />;
-              })}
+              {honeycomb.grid.length &&
+                honeycomb.grid.map((coords, i) => {
+                  return <Hex key={i} x={coords.x} y={coords.y} i={i} />;
+                })}
             </div>
           </div>
+
+          {game.length && (
+            <div id="hexGridObjects">
+              {game.length &&
+                game.map((hex, i) => {
+                  return <Objects key={i} hex={hex} />;
+                })}
+            </div>
+          )}
         </div>
       </main>
 

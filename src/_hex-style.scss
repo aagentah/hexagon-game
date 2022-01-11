@@ -315,7 +315,7 @@
   $cropFactor: 1; // (number)
   $hexContent: auto; // 'auto','center'
   $hexSize: auto; // 'auto',(px,pt,r/em,vw/h)
-  $hexMargin: 3px; // (px,pt,r/em,vw/h)
+  $hexMargin: 2px; // (px,pt,r/em,vw/h)
   //--- MIXINS ---------------------------------//
   @include hexWrapper(
     $gridWidth,

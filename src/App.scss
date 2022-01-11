@@ -39,13 +39,15 @@
 
 @import "hex-style.scss";
 
-.hex {
-  background-color: green;
+#hexGrid {
+  position: relative;
 }
 
-.red {
-  background: url("/images/grass.png");
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+.hex {
+  background-color: #94c85c;
+}
+
+.grass {
+  position: absolute;
+  width: 80px;
 }
