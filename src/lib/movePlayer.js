@@ -12,27 +12,14 @@ export const movePlayer = async (x, y) => {
   const newPlayer = _.cloneDeep(getRecoil(playerState));
   const newGame = _.cloneDeep(getRecoil(gameState));
 
-  const currentPosition = newPlayer.position;
-  const newPosition = honeycomb.grid.indexOf(honeycomb.hex([x, y]));
-  const playerObj = _.find(newGrid[currentPosition].objects, {
-    name: "player",
-  });
+  const currentPos = newPlayer.position;
+  const newPos = honeycomb.grid.indexOf(honeycomb.hex([x, y]));
+  const playerObj = _.find(newGrid[currentPos].objects, { name: "player" });
 
-  newPlayer.position = newPosition;
-
-  _.remove(newGrid[currentPosition].objects, (e) => {
-    return e.name === "player";
-  });
-
-  newGrid[newPosition].objects.push(playerObj);
-
+  newPlayer.position = newPos;
+  _.remove(newGrid[currentPos].objects, (e) => e.name === "player");
+  newGrid[newPos].objects.push(playerObj);
   newGame.round = newGame.round + 1;
-
-  // const centerHexes = [52, 66, 67, 68];
-  // const spawnPoint = centerHexes[_.random(3)];
-  //
-  // newPlayer.position = spawnPoint;
-  // newGrid[spawnPoint].objects.push({ name: "player" });
 
   await setRecoil(playerState, newPlayer);
   await setRecoil(gridState, newGrid);

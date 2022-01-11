@@ -22,9 +22,7 @@ export const handleHexStates = async () => {
     if (_.find(movable, { x: hex.x, y: hex.y })) {
       hex.objects.push({ name: "state", type: "movable" });
     } else {
-      _.remove(hex.objects, (e) => {
-        return e.name === "state";
-      });
+      _.remove(hex.objects, (e) => e.name === "state");
     }
   }
 
