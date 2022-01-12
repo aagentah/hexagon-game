@@ -81,3 +81,79 @@
 .object--player {
   transition: all 0.3s ease-in-out;
 }
+
+// sprite
+
+$base-height: 30px;
+$sprite-image-path: "";
+$sprite-image-file: "48px.png" !default;
+$spriteCols: 11 !default;
+$spriteRows: 5 !default;
+$sprite-image-icon-height: 48px;
+$sprite-image-icon-width: 48px;
+$sprite-image-width: 528px !default;
+$sprite-image-height: 240px !default;
+$sprite-icon-height: $base-height;
+$sprite-icon-width: $base-height;
+$sprite-image-scaled-height: ($sprite-image-height/$sprite-image-icon-height) *
+  $sprite-icon-height;
+$sprite-image-scaled-width: ($sprite-image-width/$sprite-image-icon-width) *
+  $sprite-icon-width;
+$sprite-image-width: $sprite-image-scaled-width;
+$sprite-image-height: $sprite-image-scaled-height;
+
+@function sprite-location(
+  $x_pos,
+  $y_pos,
+  $spriteCols: $spriteCols,
+  $spriteRows: $spriteRows
+) {
+  $x-shift: 0%;
+  $y-shift: 0%;
+
+  @if ($spriteCols>1) {
+    $x-shift: 100% * ($x_pos / ($spriteCols - 1));
+  }
+
+  @if ($spriteRows>1) {
+    $y-shift: 100% * ($y_pos / ($spriteRows - 1));
+  }
+
+  @return $x-shift $y-shift;
+}
+
+@mixin sprite-image(
+  $x: $x,
+  $y: $y,
+  $spriteCols: $spriteCols,
+  $spriteRows: $spriteRows,
+  $sprite-image-path: $sprite-image-path,
+  $sprite-image-file: $sprite-image-file,
+  $sprite-image-width: $sprite-image-width,
+  $sprite-image-height: $sprite-image-height
+) {
+  background-image: url("#{$sprite-image-path}#{$sprite-image-file}");
+  background-position: sprite-location($x, $y, $spriteCols, $spriteRows);
+  background-size: $sprite-image-width $sprite-image-height;
+}
+
+@mixin sprite-position(
+  $x: $x,
+  $y: $y,
+  $spriteCols: $spriteCols,
+  $spriteRows: $spriteRows
+) {
+  background-position: sprite-location($x, $y, $spriteCols, $spriteRows);
+}
+
+.object--player.sprite--n {
+  @include sprite-image(-1, -1);
+  width: $sprite-icon-width;
+  height: $sprite-icon-height;
+  &.sprite-icon-one {
+    @sprite-position (0,0);
+  }
+  &.sprite-icon-two {
+    @sprite-position (1,0);
+  }
+}

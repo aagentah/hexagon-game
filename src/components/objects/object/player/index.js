@@ -32,7 +32,7 @@ function Player({ hex, object }) {
 
   return (
     <img
-      className="object  object--player"
+      className="object  object--player  sprite--n"
       src={require("../../../../images/player.gif")}
       alt="logo"
       style={{ top: offsetTop, left: offsetLeft }}
