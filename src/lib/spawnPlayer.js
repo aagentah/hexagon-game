@@ -23,6 +23,15 @@ export const spawnPlayer = async () => {
       time: "800",
       offsetLeft: null,
       offsetTop: null,
+      facing: null,
+      frames: {
+        N: 4,
+        NE: 4,
+        SE: 4,
+        S: 4,
+        SW: 4,
+        NW: 4,
+      },
     },
   });
 
