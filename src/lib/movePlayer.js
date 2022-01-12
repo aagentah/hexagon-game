@@ -15,7 +15,10 @@ const postAnimation = async (i, x, y) => {
   const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
   const hexPickup = _.find(grid[i].objects, { type: "pickup" });
 
-  console.log("hexPickup", hexPickup);
+  // Handle pickup
+  if (hexPickup) {
+    //
+  }
 
   // Asigns new player position
   _.remove(grid[i].objects, (e) => e.name === "base");

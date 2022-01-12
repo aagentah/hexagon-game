@@ -12,7 +12,7 @@ export const handleHexStates = async () => {
   const player = getRecoil(playerState);
   const grid = _.cloneDeep(getRecoil(gridState));
   const playerPosHex = grid[player.position];
-  const movable = honeycomb.grid.neighborsOf(
+  const move = honeycomb.grid.neighborsOf(
     honeycomb.hex(playerPosHex.x, playerPosHex.y)
   );
 
@@ -38,22 +38,26 @@ export const handleHexStates = async () => {
 
     base = _.cloneDeep(_.find(hex?.objects, { name: "base" }));
 
-    // Adds/removes movable & killable state if within moveable area
-    if (_.find(movable, { x: hex.x, y: hex.y })) {
+    // Adds/removes move & attack state if within moveable area
+    if (_.find(move, { x: hex.x, y: hex.y })) {
       if (base.type === "small-building-1") {
-        hex.objects.push({ name: "state", type: "killable" });
+        hex.objects.push({ name: "state", type: "attack" });
       }
 
       if (base.type === "trees") {
-        hex.objects.push({ name: "state", type: "killable" });
+        hex.objects.push({ name: "state", type: "attack" });
+      }
+
+      if (base.type === "pickup") {
+        hex.objects.push({ name: "state", type: "move" });
       }
 
       if (base.type === "grass") {
-        hex.objects.push({ name: "state", type: "killable" });
+        hex.objects.push({ name: "state", type: "attack" });
       }
 
       if (base.type === "dirt") {
-        hex.objects.push({ name: "state", type: "movable" });
+        hex.objects.push({ name: "state", type: "move" });
       }
     } else {
       _.remove(hex.objects, (e) => e.name === "state");
@@ -69,7 +73,7 @@ export const handleHexStates = async () => {
     const randGrass = allGrass[_.random(allGrass.length)];
 
     _.remove(randGrass.objects, (e) => e.name === "base" && e.type === "grass");
-    randGrass.objects.push({ name: "base", type: "pickup" });
+    randGrass.objects.push({ name: "base", type: "pickup", age: 0 });
 
     game.chestSpawned.push(game.round);
   }

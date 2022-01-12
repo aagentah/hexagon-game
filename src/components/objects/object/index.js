@@ -14,7 +14,7 @@ function Object({ game, hex, object }) {
     return <Player hex={hex} object={object} />;
   }
 
-  if (name === "base" && type === "small-building-1") {
+  if (type === "small-building-1") {
     return (
       <img
         className="object  object--building"
@@ -25,11 +25,11 @@ function Object({ game, hex, object }) {
     );
   }
 
-  if (name === "base" && type === "pickup") {
+  if (type === "pickup") {
     return <Pickup game={game} hex={hex} object={object} />;
   }
 
-  if (name === "base" && type === "trees") {
+  if (type === "trees") {
     return (
       <img
         className="object  object--trees"
@@ -40,7 +40,7 @@ function Object({ game, hex, object }) {
     );
   }
 
-  if (name === "base" && type === "grass") {
+  if (type === "grass") {
     return (
       <img
         className="object  object--grass"
@@ -51,7 +51,7 @@ function Object({ game, hex, object }) {
     );
   }
 
-  if (name === "base" && type === "dirt") {
+  if (type === "dirt") {
     return (
       <>
         <img
@@ -73,7 +73,7 @@ function Object({ game, hex, object }) {
     );
   }
 
-  if (name === "state" && type === "movable") {
+  if (name === "state" && type === "move") {
     return (
       <img
         className="object  object--state"
@@ -85,7 +85,7 @@ function Object({ game, hex, object }) {
     );
   }
 
-  if (name === "state" && type === "killable") {
+  if (name === "state" && type === "attack") {
     return (
       <img
         className="object  object--state"
