@@ -73,7 +73,7 @@ function App() {
           {hasInitRound && (
             <div id="hexGridObjects">
               {grid.map((hex, i) => {
-                return <Objects key={i} hex={hex} />;
+                return <Objects key={i} game={game} hex={hex} />;
               })}
             </div>
           )}

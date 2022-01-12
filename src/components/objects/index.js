@@ -6,12 +6,12 @@ import { gridState } from "../../state/grid";
 
 import Object from "./object";
 
-function Objects({ hex }) {
+function Objects({ game, hex }) {
   return (
     <>
       {hex.objects.length &&
         hex.objects.map((object, i) => {
-          return <Object key={i} hex={hex} object={object} />;
+          return <Object key={i} game={game} hex={hex} object={object} />;
         })}
     </>
   );

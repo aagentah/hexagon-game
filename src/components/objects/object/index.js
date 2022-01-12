@@ -6,7 +6,7 @@ import Player from "./player";
 import { movePlayer } from "../../../lib/movePlayer";
 import { playerAttack } from "../../../lib/playerAttack";
 
-function Object({ hex, object }) {
+function Object({ game, hex, object }) {
   const { i, x, y, inputRef } = hex;
   const { name, type, age } = object;
 
@@ -76,7 +76,7 @@ function Object({ hex, object }) {
         src={require("../../../images/hex-green.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
-        onClick={() => movePlayer(i, x, y)}
+        onClick={() => !game.isAnimating && movePlayer(i, x, y)}
       />
     );
   }
@@ -88,7 +88,7 @@ function Object({ hex, object }) {
         src={require("../../../images/hex-red.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
-        onClick={() => playerAttack(i, x, y)}
+        onClick={() => !game.isAnimating && playerAttack(i, x, y)}
       />
     );
   }

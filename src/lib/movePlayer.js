@@ -30,6 +30,7 @@ const postAnimation = async (i, x, y) => {
   hexPlayer.animations.offsetLeft = null;
   hexPlayer.animations.offsetTop = null;
   hexPlayer.animations.facing = null;
+  game.isAnimating = false;
 
   await setRecoil(playerState, player);
   await setRecoil(gridState, grid);
@@ -38,6 +39,7 @@ const postAnimation = async (i, x, y) => {
 
 const animation = async (i, x, y) => {
   const honeycomb = getRecoil(honeycombState);
+  const game = _.cloneDeep(getRecoil(gameState));
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
   const currentPos = player.position;
@@ -48,9 +50,11 @@ const animation = async (i, x, y) => {
   hexPlayer.animations.offsetLeft = grid[i].inputRef.offsetLeft;
   hexPlayer.animations.offsetTop = grid[i].inputRef.offsetTop;
   hexPlayer.animations.facing = targetDirection(i, x, y);
+  game.isAnimating = true;
 
   await setRecoil(playerState, player);
   await setRecoil(gridState, grid);
+  await setRecoil(gameState, game);
 };
 
 export const movePlayer = async (i, x, y) => {
