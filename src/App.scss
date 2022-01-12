@@ -39,22 +39,11 @@
 
 @import "hex-style.scss";
 
-.App {
-  margin-top: 50px;
-}
-
 #hexGrid {
-  position: relative;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
-}
-
-#hexGridObjects {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .hex {

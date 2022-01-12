@@ -19,11 +19,6 @@ function Hex({ x, y, i }) {
   };
 
   useEffect(() => {
-    const rect = inputRef?.current.getBoundingClientRect();
-
-    console.log("rect", rect);
-    console.log("inputRef?.current", inputRef?.current.offsetTop);
-    console.log("inputRef?.current", inputRef?.current.offsetLeft);
     setGrid((old) => [
       ...old,
       {
@@ -31,10 +26,10 @@ function Hex({ x, y, i }) {
         x,
         y,
         inputRef: {
-          offsetLeft: rect.left,
-          offsetTop: rect.top,
-          offsetHeight: rect.height,
-          offsetWidth: rect.width,
+          offsetLeft: inputRef.current.offsetLeft,
+          offsetTop: inputRef.current.offsetTop,
+          offsetHeight: inputRef.current.offsetHeight,
+          offsetWidth: inputRef.current.offsetWidth,
         },
         objects: [
           { name: "state", type: null },
