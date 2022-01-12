@@ -1,21 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-
+import { SpriteAnimator } from "react-sprite-animator";
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
-import { gridState } from "../../../../state/grid";
-import { gameState } from "../../../../state/game";
-import { playerState } from "../../../../state/player";
-
 import { movePlayer } from "../../../../lib/movePlayer";
+
+import sprite from "../../../../images/wizzard/sprite.png";
 
 function Player({ hex, object }) {
   const { i, x, y, inputRef } = hex;
@@ -31,12 +21,25 @@ function Player({ hex, object }) {
   }, [animations.active]);
 
   return (
-    <img
-      className="object  object--player  sprite--n"
-      src={require("../../../../images/player.gif")}
-      alt="logo"
-      style={{ top: offsetTop, left: offsetLeft }}
-    />
+    <>
+      <div
+        className="object  object--player"
+        style={{ top: offsetTop, left: offsetLeft }}
+      >
+        <SpriteAnimator
+          width={32}
+          height={36}
+          frameCount={8}
+          sprite={sprite}
+          direction="horizontal"
+          shouldAnimate={true}
+          fps={8}
+          startFrame={0}
+          stopLastFrame={false}
+          reset={null}
+        />
+      </div>
+    </>
   );
 }
 

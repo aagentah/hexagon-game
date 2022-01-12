@@ -1,14 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { useRecoilState } from "recoil";
 import * as Honeycomb from "honeycomb-grid";
-
 import * as _ from "lodash";
 
 import Hex from "./components/hex";
@@ -47,10 +39,6 @@ function App() {
   useEffect(() => {
     if (grid.length) setHasRendered(true);
   }, [grid]);
-
-  // useEffect(() => {
-  //   console.log("game", game);
-  // }, [game]);
 
   return (
     <div className="App">

@@ -1,16 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from "recoil";
-
+import { useRecoilState } from "recoil";
 import classNames from "classnames";
-
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
@@ -50,30 +40,16 @@ function Hex({ x, y, i }) {
     ]);
   }, [i]);
 
-  // const setObject = () => {
-  //   const newObjects = _.cloneDeep(curr.objects);
-  //   newObjects.push({ name: "tree" });
-  //
-  //   const game = replaceItemAtIndex(grid, i, {
-  //     ...curr,
-  //     objects: newObjects,
-  //   });
-  //
-  //   setGrid(game);
-  // };
-
   const base = _.find(curr?.objects, { name: "base" });
 
   return (
     <>
       <div
-        // style={{ backgroundImage: `url(${grass1})` }}
         className={`hex  base--${base?.type && base.type}`}
         ref={inputRef}
         data-x={x}
         data-y={y}
         data-i={i}
-        // onClick={setObject}
       ></div>
     </>
   );

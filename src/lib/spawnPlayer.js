@@ -20,7 +20,7 @@ export const spawnPlayer = async () => {
     name: "player",
     animations: {
       active: false,
-      time: "300",
+      time: "800",
       offsetLeft: null,
       offsetTop: null,
     },

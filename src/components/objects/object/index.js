@@ -1,36 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
-
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
-
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
 import Player from "./player";
-
-import { gridState } from "../../../state/grid";
-import { gameState } from "../../../state/game";
-import { playerState } from "../../../state/player";
-
 import { movePlayer } from "../../../lib/movePlayer";
 import { playerAttack } from "../../../lib/playerAttack";
 
 function Object({ hex, object }) {
-  const [grid, setGrid] = useRecoilState(gridState);
-  const [game, setGame] = useRecoilState(gameState);
-  const [player, setPlayer] = useRecoilState(playerState);
-
   const { i, x, y, inputRef } = hex;
   const { name, type, age } = object;
-
-  // useEffect(() => {
-  //   //
-  // }, [i]);
 
   if (name === "player") {
     return <Player hex={hex} object={object} />;

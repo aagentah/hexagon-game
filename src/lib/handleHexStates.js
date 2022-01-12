@@ -54,7 +54,5 @@ export const handleHexStates = async () => {
     }
   }
 
-  console.log("grid", grid);
-
   await setRecoil(gridState, grid);
 };
