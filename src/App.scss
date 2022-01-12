@@ -60,15 +60,9 @@
   &--dirt {
     background-color: #806854;
   }
-}
 
-// .hex:hover {
-//   transform: scale(1.05);
-// }
-
-.outline {
-  &--red {
-    // border: 1px solid red;
+  &--small-building-1 {
+    background-color: #82bf40;
   }
 }
 
@@ -83,6 +77,6 @@
 }
 
 .object--player {
-  transition: all 0.8s ease-in-out;
-  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
+  transform: scale(1.2);
 }

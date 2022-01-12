@@ -20,7 +20,6 @@ function Hex({ x, y, i }) {
   }
 
   useEffect(() => {
-    console.log("inputRef.current.offsetWidth", inputRef.current.offsetWidth);
     const w2 = inputRef.current.offsetWidth / 2;
     setGrid((old) => [
       ...old,

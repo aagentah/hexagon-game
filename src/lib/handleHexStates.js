@@ -2,11 +2,13 @@ import * as _ from "lodash";
 import { getRecoil, setRecoil } from "recoil-nexus";
 
 import { honeycombState } from "../state/honeycomb";
+import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
 
 export const handleHexStates = async () => {
   const honeycomb = getRecoil(honeycombState);
+  const game = _.cloneDeep(getRecoil(gameState));
   const player = getRecoil(playerState);
   const grid = _.cloneDeep(getRecoil(gridState));
   const playerPosHex = grid[player.position];
@@ -38,11 +40,15 @@ export const handleHexStates = async () => {
 
     // Adds/removes movable & killable state if within moveable area
     if (_.find(movable, { x: hex.x, y: hex.y })) {
-      if (base.type === "grass") {
+      if (base.type === "small-building-1") {
         hex.objects.push({ name: "state", type: "killable" });
       }
 
       if (base.type === "trees") {
+        hex.objects.push({ name: "state", type: "killable" });
+      }
+
+      if (base.type === "grass") {
         hex.objects.push({ name: "state", type: "killable" });
       }
 
@@ -54,5 +60,20 @@ export const handleHexStates = async () => {
     }
   }
 
+  // Every 20th round, Add small building to a random grass block
+  if (game.round % 20 === 0 && !game.chestSpawned.includes(game.round)) {
+    const allGrass = _.filter(grid, {
+      objects: [{ name: "base", type: "grass" }],
+    });
+
+    const randGrass = allGrass[_.random(allGrass.length)];
+
+    _.remove(randGrass.objects, (e) => e.name === "base" && e.type === "grass");
+    randGrass.objects.push({ name: "base", type: "small-building-1" });
+
+    game.chestSpawned.push(game.round);
+  }
+
+  await setRecoil(gameState, game);
   await setRecoil(gridState, grid);
 };

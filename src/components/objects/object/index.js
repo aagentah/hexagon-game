@@ -14,6 +14,17 @@ function Object({ hex, object }) {
     return <Player hex={hex} object={object} />;
   }
 
+  if (name === "base" && type === "small-building-1") {
+    return (
+      <img
+        className="object"
+        src={require("../../../images/small-building-1.png")}
+        alt="logo"
+        style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+      />
+    );
+  }
+
   if (name === "base" && type === "trees") {
     return (
       <img

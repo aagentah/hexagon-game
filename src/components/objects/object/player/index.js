@@ -15,17 +15,15 @@ function Player({ hex, object }) {
 
   // Animates the Player image
   useEffect(() => {
-    if (!animations.active) return;
-    setOffsetLeft(animations.offsetLeft);
-    setOffsetTop(animations.offsetTop);
-    setSprite(`walk-${animations.facing}`);
-    setFrames(animations.frames[animations.facing]);
-
-    console.log("animations.facing", animations.facing);
-    console.log(
-      "animations.frames[animations.facing]",
-      animations.frames[animations.facing]
-    );
+    if (animations.active) {
+      setOffsetLeft(animations.offsetLeft);
+      setOffsetTop(animations.offsetTop);
+      setSprite(`walk-${animations.facing}`);
+      setFrames(animations.frames[animations.facing]);
+    } else {
+      setSprite("idle");
+      setFrames(1);
+    }
   }, [animations.active, animations.offsetTop, animations.facing]);
 
   return (
