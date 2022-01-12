@@ -4,14 +4,14 @@ import * as _ from "lodash";
 
 import { movePlayer } from "../../../../lib/movePlayer";
 
-function Bonfire({ hex, object }) {
+function Pickup({ game, hex, object }) {
   const { i, x, y, inputRef } = hex;
   const { name, type, animations } = object;
   const [offsetTop, setOffsetTop] = useState(inputRef.offsetTop);
   const [offsetLeft, setOffsetLeft] = useState(inputRef.offsetLeft);
 
   return (
-    <>
+    <div onClick={() => !game.isAnimating && movePlayer(i, x, y)}>
       <img
         className="object  object--dirt"
         src={require("../../../../images/dirt.png")}
@@ -20,7 +20,7 @@ function Bonfire({ hex, object }) {
       />
 
       <div
-        className="object  object--bonfire"
+        className="object  object--pickup"
         style={{ top: offsetTop, left: offsetLeft }}
       >
         <SpriteAnimator
@@ -37,8 +37,8 @@ function Bonfire({ hex, object }) {
           wrapAfter={8}
         />
       </div>
-    </>
+    </div>
   );
 }
 
-export default Bonfire;
+export default Pickup;

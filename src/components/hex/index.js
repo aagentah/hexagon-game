@@ -42,7 +42,9 @@ function Hex({ x, y, i }) {
   return (
     <>
       <div
-        className={`hex  base--${base?.type && base.type}`}
+        className={`hex  base--${base?.name && base.name}  base--${
+          base?.type && base.type
+        }`}
         ref={inputRef}
         data-x={x}
         data-y={y}

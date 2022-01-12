@@ -13,7 +13,9 @@ const postAnimation = async (i, x, y) => {
   const game = _.cloneDeep(getRecoil(gameState));
   const currentPos = player.position;
   const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
-  const hexBase = _.find(grid[currentPos].objects, { name: "base" });
+  const hexPickup = _.find(grid[i].objects, { type: "pickup" });
+
+  console.log("hexPickup", hexPickup);
 
   // Asigns new player position
   _.remove(grid[i].objects, (e) => e.name === "base");

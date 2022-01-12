@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 
 import Player from "./player";
-import Bonfire from "./bonfire";
+import Pickup from "./pickup";
 
 import { movePlayer } from "../../../lib/movePlayer";
 import { playerAttack } from "../../../lib/playerAttack";
@@ -25,9 +25,9 @@ function Object({ game, hex, object }) {
     );
   }
 
-  // if (name === "base" && type === "small-building-1") {
-  //   return <Bonfire hex={hex} object={object} />;
-  // }
+  if (name === "base" && type === "pickup") {
+    return <Pickup game={game} hex={hex} object={object} />;
+  }
 
   if (name === "base" && type === "trees") {
     return (

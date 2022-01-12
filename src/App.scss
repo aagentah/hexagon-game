@@ -67,6 +67,10 @@
   &--small-building-1 {
     background-color: #82bf40;
   }
+
+  &--pickup {
+    background-color: #94c85c;
+  }
 }
 
 .object {
@@ -112,5 +116,9 @@
 
   &--state {
     z-index: 1;
+  }
+
+  &--pickup {
+    //
   }
 }

@@ -60,7 +60,7 @@ export const handleHexStates = async () => {
     }
   }
 
-  // Every 20th round, Add small building to a random grass block
+  // Every 20th round, Add pickup to a random grass block
   if (game.round % 20 === 0 && !game.chestSpawned.includes(game.round)) {
     const allGrass = _.filter(grid, {
       objects: [{ name: "base", type: "grass" }],
@@ -69,7 +69,7 @@ export const handleHexStates = async () => {
     const randGrass = allGrass[_.random(allGrass.length)];
 
     _.remove(randGrass.objects, (e) => e.name === "base" && e.type === "grass");
-    randGrass.objects.push({ name: "base", type: "small-building-1" });
+    randGrass.objects.push({ name: "base", type: "pickup" });
 
     game.chestSpawned.push(game.round);
   }
