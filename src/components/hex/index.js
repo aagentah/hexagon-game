@@ -3,12 +3,9 @@ import { useRecoilState } from "recoil";
 import * as _ from "lodash";
 
 import { gridState } from "../../state/grid";
+import { placeTotem } from "../../lib/placeTotem";
 
-import grass1 from "../../images/grass-1.png";
-import grass2 from "../../images/grass-2.png";
-import trees1 from "../../images/trees-1.png";
-
-function Hex({ x, y, i }) {
+function Hex({ game, i, x, y }) {
   const inputRef = useRef();
   const [grid, setGrid] = useRecoilState(gridState);
   const curr = grid[i];
@@ -16,6 +13,12 @@ function Hex({ x, y, i }) {
 
   const replaceItemAtIndex = (arr, index, newValue) => {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+  };
+
+  const handleClick = () => {
+    if (game.isSelectingTotem) {
+      placeTotem(i, x, y);
+    }
   };
 
   useEffect(() => {
@@ -42,6 +45,7 @@ function Hex({ x, y, i }) {
   return (
     <>
       <div
+        onClick={handleClick}
         className={`hex  hex--${item?.name}  hex--${item?.type}`}
         ref={inputRef}
         data-x={x}

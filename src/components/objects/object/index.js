@@ -14,7 +14,7 @@ function Object({ game, hex, object }) {
     return <Player hex={hex} object={object} />;
   }
 
-  if (type === "small-building-1") {
+  if (type === "totem") {
     return (
       <img
         className="object  object--building"
@@ -26,7 +26,7 @@ function Object({ game, hex, object }) {
   }
 
   if (type === "pickup") {
-    return <Pickup game={game} hex={hex} object={object} />;
+    return <Pickup hex={hex} object={object} />;
   }
 
   if (type === "trees") {

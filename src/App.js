@@ -4,6 +4,7 @@ import * as _ from "lodash";
 
 import Hex from "./components/hex";
 import Objects from "./components/objects";
+import Stats from "./components/stats";
 
 import { honeycombState } from "./state/honeycomb";
 import { gridState } from "./state/grid";
@@ -70,7 +71,15 @@ function App() {
               <div className="hexGrid">
                 {honeycomb.grid.length &&
                   honeycomb.grid.map((coords, i) => {
-                    return <Hex key={i} x={coords.x} y={coords.y} i={i} />;
+                    return (
+                      <Hex
+                        key={i}
+                        game={game}
+                        x={coords.x}
+                        y={coords.y}
+                        i={i}
+                      />
+                    );
                   })}
               </div>
             </div>
@@ -83,6 +92,12 @@ function App() {
               </div>
             )}
           </div>
+
+          {hasInitRound && (
+            <div id="state">
+              <Stats game={game} />
+            </div>
+          )}
         </main>
 
         {

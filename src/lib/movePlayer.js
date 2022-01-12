@@ -17,7 +17,7 @@ const postAnimation = async (i, x, y) => {
 
   // Handle pickup
   if (hexPickup) {
-    //
+    player.coins = player.coins + 1;
   }
 
   // Asigns new player position

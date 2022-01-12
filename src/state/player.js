@@ -7,5 +7,12 @@ export const playerState = atom({
     health: 100,
     canMove: 1,
     position: null,
+    coins: 0,
+    stats: {
+      attack: 1,
+      agility: 1,
+      conjuration: 1,
+    },
+    totems: [],
   }, // default value (aka initial value)
 });

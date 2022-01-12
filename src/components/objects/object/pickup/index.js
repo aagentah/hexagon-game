@@ -4,14 +4,14 @@ import * as _ from "lodash";
 
 import { movePlayer } from "../../../../lib/movePlayer";
 
-function Pickup({ game, hex, object }) {
+function Pickup({ hex, object }) {
   const { i, x, y, inputRef } = hex;
   const { name, type, animations } = object;
   const [offsetTop, setOffsetTop] = useState(inputRef.offsetTop);
   const [offsetLeft, setOffsetLeft] = useState(inputRef.offsetLeft);
 
   return (
-    <div onClick={() => !game.isAnimating && movePlayer(i, x, y)}>
+    <>
       <img
         className="object  object--dirt"
         src={require("../../../../images/dirt.png")}
@@ -37,7 +37,7 @@ function Pickup({ game, hex, object }) {
           wrapAfter={8}
         />
       </div>
-    </div>
+    </>
   );
 }
 

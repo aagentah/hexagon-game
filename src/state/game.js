@@ -6,5 +6,6 @@ export const gameState = atom({
     round: 0,
     chestSpawned: [],
     isAnimating: false,
+    isSelectingTotem: null,
   }, // default value (aka initial value)
 });
