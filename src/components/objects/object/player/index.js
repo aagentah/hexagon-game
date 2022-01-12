@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { SpriteAnimator } from "react-sprite-animator";
-import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
 import { movePlayer } from "../../../../lib/movePlayer";

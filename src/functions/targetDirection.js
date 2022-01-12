@@ -1,8 +1,7 @@
 import * as _ from "lodash";
-import { getRecoil, setRecoil } from "recoil-nexus";
+import { getRecoil } from "recoil-nexus";
 
 import { honeycombState } from "../state/honeycomb";
-import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
 

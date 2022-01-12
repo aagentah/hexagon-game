@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
 import Hex from "./components/hex";

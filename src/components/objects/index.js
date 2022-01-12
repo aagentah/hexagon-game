@@ -1,4 +1,3 @@
-import React, { useRef, useState, useEffect } from "react";
 import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 

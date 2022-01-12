@@ -1,7 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import classNames from "classnames";
-import * as Honeycomb from "honeycomb-grid";
 import * as _ from "lodash";
 
 import { gridState } from "../../state/grid";
@@ -14,34 +12,34 @@ function Hex({ x, y, i }) {
   const inputRef = useRef();
   const [grid, setGrid] = useRecoilState(gridState);
   const curr = grid[i];
+  const base = _.find(curr?.objects, { name: "base" });
 
-  function replaceItemAtIndex(arr, index, newValue) {
+  const replaceItemAtIndex = (arr, index, newValue) => {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-  }
+  };
 
   useEffect(() => {
-    const w2 = inputRef.current.offsetWidth / 2;
-    setGrid((old) => [
-      ...old,
-      {
-        i,
-        x,
-        y,
-        inputRef: {
-          offsetLeft: inputRef.current.offsetLeft,
-          offsetTop: inputRef.current.offsetTop,
-          offsetHeight: inputRef.current.offsetHeight,
-          offsetWidth: inputRef.current.offsetWidth,
+    if (inputRef?.current) {
+      setGrid((old) => [
+        ...old,
+        {
+          i,
+          x,
+          y,
+          inputRef: {
+            offsetLeft: inputRef.current.offsetLeft,
+            offsetTop: inputRef.current.offsetTop,
+            offsetHeight: inputRef.current.offsetHeight,
+            offsetWidth: inputRef.current.offsetWidth,
+          },
+          objects: [
+            { name: "state", type: null },
+            { name: "base", type: "grass", age: 0 },
+          ],
         },
-        objects: [
-          { name: "state", type: null },
-          { name: "base", type: "grass", age: 0 },
-        ],
-      },
-    ]);
-  }, [i]);
-
-  const base = _.find(curr?.objects, { name: "base" });
+      ]);
+    }
+  }, [inputRef]);
 
   return (
     <>

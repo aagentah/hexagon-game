@@ -1,7 +1,6 @@
 import * as _ from "lodash";
 import { getRecoil, setRecoil } from "recoil-nexus";
 
-import { honeycombState } from "../state/honeycomb";
 import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
@@ -9,7 +8,6 @@ import { playerState } from "../state/player";
 import { targetDirection } from "../functions/targetDirection";
 
 const postAnimation = async (i, x, y) => {
-  const honeycomb = getRecoil(honeycombState);
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
   const game = _.cloneDeep(getRecoil(gameState));
@@ -38,7 +36,6 @@ const postAnimation = async (i, x, y) => {
 };
 
 const animation = async (i, x, y) => {
-  const honeycomb = getRecoil(honeycombState);
   const game = _.cloneDeep(getRecoil(gameState));
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
