@@ -19,7 +19,6 @@ import { gridState } from "./state/grid";
 import { gameState } from "./state/game";
 
 import { spawnPlayer } from "./lib/spawnPlayer";
-import { handleHexAge } from "./lib/handleHexAge";
 import { handleHexStates } from "./lib/handleHexStates";
 
 import logo from "./logo.svg";
@@ -40,7 +39,6 @@ function App() {
       await spawnPlayer({ grid, game });
     }
 
-    // await handleHexAge();
     await handleHexStates();
 
     setHasInitRound(true);
