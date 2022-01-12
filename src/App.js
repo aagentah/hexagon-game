@@ -21,6 +21,7 @@ function App() {
   const [game, setGame] = useRecoilState(gameState);
   const [hasRendered, setHasRendered] = useState(false);
   const [hasInitRound, setHasInitRound] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(async () => {
     if (!grid.length) return;
@@ -39,60 +40,68 @@ function App() {
     if (grid.length) setHasRendered(true);
   }, [grid]);
 
-  return (
-    <div className="App">
-      {
-        // <header className="App-header">
-        //   <img src={logo} className="App-logo" alt="logo" />
-        //   <p>
-        //     Edit <code>src/App.js</code> and save to reload.
-        //   </p>
-        //   <a
-        //     className="App-link"
-        //     href="https://reactjs.org"
-        //     target="_blank"
-        //     rel="noopener noreferrer"
-        //   >
-        //     Learn React
-        //   </a>
-        // </header>
-      }
+  setTimeout(() => {
+    setReady(true);
+  }, 500);
 
-      <main>
-        <div id="hexGrid">
-          <div className="hexCrop">
-            <div className="hexGrid">
-              {honeycomb.grid.length &&
-                honeycomb.grid.map((coords, i) => {
-                  return <Hex key={i} x={coords.x} y={coords.y} i={i} />;
+  if (ready) {
+    return (
+      <div className="App">
+        {
+          // <header className="App-header">
+          //   <img src={logo} className="App-logo" alt="logo" />
+          //   <p>
+          //     Edit <code>src/App.js</code> and save to reload.
+          //   </p>
+          //   <a
+          //     className="App-link"
+          //     href="https://reactjs.org"
+          //     target="_blank"
+          //     rel="noopener noreferrer"
+          //   >
+          //     Learn React
+          //   </a>
+          // </header>
+        }
+
+        <main>
+          <div id="hexGrid">
+            <div className="hexCrop">
+              <div className="hexGrid">
+                {honeycomb.grid.length &&
+                  honeycomb.grid.map((coords, i) => {
+                    return <Hex key={i} x={coords.x} y={coords.y} i={i} />;
+                  })}
+              </div>
+            </div>
+
+            {hasInitRound && (
+              <div id="hexGridObjects">
+                {grid.map((hex, i) => {
+                  return <Objects key={i} game={game} hex={hex} />;
                 })}
-            </div>
+              </div>
+            )}
           </div>
+        </main>
 
-          {hasInitRound && (
-            <div id="hexGridObjects">
-              {grid.map((hex, i) => {
-                return <Objects key={i} game={game} hex={hex} />;
-              })}
-            </div>
-          )}
-        </div>
-      </main>
+        {
+          // <footer>
+          //   <p>
+          //     Thanks to{" "}
+          //     <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">
+          //       CSS-Tricks
+          //     </a>
+          //     , <a href="http://csshexagon.com/">CSS Hexagon, Please</a> and{" "}
+          //     <a href="https://simpleicons.org/">Simple Icons</a>.
+          //   </p>
+          // </footer>
+        }
+      </div>
+    );
+  }
 
-      {
-        // <footer>
-        //   <p>
-        //     Thanks to{" "}
-        //     <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">
-        //       CSS-Tricks
-        //     </a>
-        //     , <a href="http://csshexagon.com/">CSS Hexagon, Please</a> and{" "}
-        //     <a href="https://simpleicons.org/">Simple Icons</a>.
-        //   </p>
-        // </footer>
-      }
-    </div>
-  );
+  return false;
 }
 
 export default App;
