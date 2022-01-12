@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { SpriteAnimator } from "react-sprite-animator";
 import * as _ from "lodash";
 
-import { movePlayer } from "../../../../lib/movePlayer";
-
 function Player({ hex, object }) {
   const { i, x, y, inputRef } = hex;
   const { name, type, animations } = object;

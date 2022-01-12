@@ -18,20 +18,16 @@ export const handleHexStates = async () => {
   const attackTypes = ["grass", "trees"];
   const moveTypes = ["dirt", "pickup", "totem-1"];
 
+  console.log("grid", grid);
+
   const addPickup = () => {
     // Every 20th round, Add pickup to a random grass block
     if (game.round % 20 === 0 && !game.chestSpawned.includes(game.round)) {
-      const allGrass = _.filter(grid, {
-        objects: [{ name: "item", type: "grass" }],
-      });
+      const allGrass = _.filter(grid, { object: { type: "grass" } });
 
       const randGrass = allGrass[_.random(allGrass.length)];
 
-      _.remove(
-        randGrass.objects,
-        (e) => e.name === "item" && e.type === "grass"
-      );
-      randGrass.objects.push({ name: "item", type: "pickup", age: 0 });
+      randGrass.object = { name: "item", type: "pickup", age: 0 };
 
       game.chestSpawned.push(game.round);
     }
@@ -40,24 +36,26 @@ export const handleHexStates = async () => {
   // Loops through grid and sets state
   for (let i = 0; i < grid.length; i++) {
     const hex = grid[i];
-    let item = _.find(hex?.objects, { name: "item" });
+    let item = hex?.object;
+
+    if (!item) {
+      break;
+    }
 
     // Increments age of item
     item.age = item.age + 1;
 
     // Changes dirt to grass after certain age
     if (i !== player.position && item.type === "dirt" && item.age >= 20) {
-      _.remove(hex.objects, (e) => e.name === "item");
-      hex.objects.push({ name: "item", type: "grass", age: 20 });
+      hex.object = { name: "item", type: "grass", age: 20 };
     }
 
     // Changes grass to trees after certain age
     if (i !== player.position && item.type === "grass" && item.age >= 40) {
-      _.remove(hex.objects, (e) => e.name === "item");
-      hex.objects.push({ name: "item", type: "trees", age: 40 });
+      hex.object = { name: "item", type: "trees", age: 40 };
     }
 
-    item = _.cloneDeep(_.find(hex?.objects, { name: "item" }));
+    item = _.cloneDeep(hex?.object);
 
     // Get totems
     if (player.totems.length) {
@@ -71,8 +69,7 @@ export const handleHexStates = async () => {
 
         // If current hex is totem neighbour, make dirt
         if (_.find(totemNeighbours, { x: hex.x, y: hex.y })) {
-          _.remove(hex?.objects, (e) => e.name === "item");
-          hex.objects.push({ name: "item", type: "dirt", age: 0 });
+          hex.object = { name: "item", type: "dirt", age: 0 };
         }
       }
     }
@@ -80,14 +77,14 @@ export const handleHexStates = async () => {
     // If current hex within playerNeighbours, Adds/removes move & attack state if within moveable area
     if (_.find(playerNeighbours, { x: hex.x, y: hex.y })) {
       if (attackTypes.includes(item.type)) {
-        hex.objects.push({ name: "state", type: "attack" });
+        hex.selector = { type: "attack" };
       }
 
       if (moveTypes.includes(item.type)) {
-        hex.objects.push({ name: "state", type: "move" });
+        hex.selector = { type: "move" };
       }
     } else {
-      _.remove(hex.objects, (e) => e.name === "state");
+      hex.selector = null;
     }
   }
 

@@ -12,19 +12,17 @@ const postAnimation = async (i, x, y) => {
   const player = _.cloneDeep(getRecoil(playerState));
   const game = _.cloneDeep(getRecoil(gameState));
   const currentPos = player.position;
-  const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
-  const item = _.find(grid[i]?.objects, { name: "item" });
+  const hexPlayer = grid[currentPos].object;
+  const item = grid[i]?.object;
 
   // Kills grass
   if (item.type === "grass") {
-    _.remove(grid[i].objects, (e) => e.name === "item");
-    grid[i].objects.push({ name: "item", type: "dirt", age: 0 });
+    grid[i].object = { name: "item", type: "dirt", age: 0 };
   }
 
   // Kills trees
   if (item.type === "trees") {
-    _.remove(grid[i].objects, (e) => e.name === "item");
-    grid[i].objects.push({ name: "item", type: "grass", age: 20 });
+    grid[i].object = { name: "item", type: "grass", age: 20 };
   }
 
   game.round = game.round + 1;
@@ -46,7 +44,7 @@ const animation = async (i, x, y) => {
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
   const currentPos = player.position;
-  const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
+  const hexPlayer = grid[currentPos].object;
 
   // Activate animations in the hexPlayer
   hexPlayer.animations.active = true;
@@ -65,7 +63,7 @@ export const playerAttack = async (i, x, y) => {
   const player = _.cloneDeep(getRecoil(playerState));
 
   const currentPos = player.position;
-  const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
+  const hexPlayer = grid[currentPos].object;
 
   animation(i, x, y);
 

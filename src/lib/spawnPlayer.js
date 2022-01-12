@@ -13,11 +13,10 @@ export const spawnPlayer = async () => {
   // Spawn player on random center hex
 
   player.position = spawnPoint;
-  _.remove(grid[spawnPoint].objects, (e) => e.name === "item");
-  grid[spawnPoint].objects.push({ name: "item", type: "dirt", age: 0 });
+  // grid[spawnPoint].object = { name: "item", type: "dirt", age: 0 };
 
-  grid[spawnPoint].objects.push({
-    name: "player",
+  grid[spawnPoint].object = {
+    type: "player",
     animations: {
       active: false,
       time: "500",
@@ -33,7 +32,7 @@ export const spawnPlayer = async () => {
         NW: 4,
       },
     },
-  });
+  };
 
   await setRecoil(playerState, player);
   await setRecoil(gridState, grid);

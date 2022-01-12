@@ -8,10 +8,7 @@ import Object from "./object";
 function Objects({ game, hex }) {
   return (
     <>
-      {hex.objects.length &&
-        hex.objects.map((object, i) => {
-          return <Object key={i} game={game} hex={hex} object={object} />;
-        })}
+      <Object game={game} hex={hex} />;
     </>
   );
 }

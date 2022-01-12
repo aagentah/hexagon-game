@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import * as _ from "lodash";
 
@@ -9,7 +9,7 @@ function Hex({ game, i, x, y }) {
   const inputRef = useRef();
   const [grid, setGrid] = useRecoilState(gridState);
   const curr = grid[i];
-  const item = _.find(curr?.objects, { name: "item" });
+  const [clss, setClss] = useState(false);
 
   const replaceItemAtIndex = (arr, index, newValue) => {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
@@ -34,19 +34,24 @@ function Hex({ game, i, x, y }) {
           offsetHeight: inputRef.current.offsetHeight,
           offsetWidth: inputRef.current.offsetWidth,
         },
-        objects: [
-          { name: "state", type: null },
-          { name: "item", type: "grass", age: 0 },
-        ],
+        object: { name: "item", type: "grass", age: 0 },
+        selector: { type: null },
       },
     ]);
   }, [i]);
+
+  useEffect(() => {
+    if (curr) {
+      console.log("change");
+      setClss(curr.object.type);
+    }
+  }, [curr]);
 
   return (
     <>
       <div
         onClick={handleClick}
-        className={`hex  hex--${item?.name}  hex--${item?.type}`}
+        className={`hex  hex--${clss}`}
         ref={inputRef}
         data-x={x}
         data-y={y}
