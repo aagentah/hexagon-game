@@ -13,18 +13,18 @@ const postAnimation = async (i, x, y) => {
   const game = _.cloneDeep(getRecoil(gameState));
   const currentPos = player.position;
   const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
-  const base = _.find(grid[i]?.objects, { name: "base" });
+  const item = _.find(grid[i]?.objects, { name: "item" });
 
   // Kills grass
-  if (base.type === "grass") {
-    _.remove(grid[i].objects, (e) => e.name === "base");
-    grid[i].objects.push({ name: "base", type: "dirt", age: 0 });
+  if (item.type === "grass") {
+    _.remove(grid[i].objects, (e) => e.name === "item");
+    grid[i].objects.push({ name: "item", type: "dirt", age: 0 });
   }
 
   // Kills trees
-  if (base.type === "trees") {
-    _.remove(grid[i].objects, (e) => e.name === "base");
-    grid[i].objects.push({ name: "base", type: "grass", age: 20 });
+  if (item.type === "trees") {
+    _.remove(grid[i].objects, (e) => e.name === "item");
+    grid[i].objects.push({ name: "item", type: "grass", age: 20 });
   }
 
   game.round = game.round + 1;

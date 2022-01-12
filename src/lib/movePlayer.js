@@ -21,8 +21,8 @@ const postAnimation = async (i, x, y) => {
   }
 
   // Asigns new player position
-  _.remove(grid[i].objects, (e) => e.name === "base");
-  grid[i].objects.push({ name: "base", type: "dirt", age: 0 });
+  _.remove(grid[i].objects, (e) => e.name === "item");
+  grid[i].objects.push({ name: "item", type: "dirt", age: 0 });
   player.position = i;
   grid[i].objects.push(hexPlayer);
   _.remove(grid[currentPos].objects, (e) => e.name === "player");

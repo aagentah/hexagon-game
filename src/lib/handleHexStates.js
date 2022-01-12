@@ -21,32 +21,32 @@ export const handleHexStates = async () => {
   // Loops through grid and sets state
   for (let i = 0; i < grid.length; i++) {
     const hex = grid[i];
-    let base = _.find(hex?.objects, { name: "base" });
+    let item = _.find(hex?.objects, { name: "item" });
 
-    // Increments age of base
-    base.age = base.age + 1;
+    // Increments age of item
+    item.age = item.age + 1;
 
     // Changes dirt to grass after certain age
-    if (i !== player.position && base.type === "dirt" && base.age >= 20) {
-      _.remove(hex.objects, (e) => e.name === "base");
-      hex.objects.push({ name: "base", type: "grass", age: 20 });
+    if (i !== player.position && item.type === "dirt" && item.age >= 20) {
+      _.remove(hex.objects, (e) => e.name === "item");
+      hex.objects.push({ name: "item", type: "grass", age: 20 });
     }
 
     // Changes grass to trees after certain age
-    if (i !== player.position && base.type === "grass" && base.age >= 40) {
-      _.remove(hex.objects, (e) => e.name === "base");
-      hex.objects.push({ name: "base", type: "trees", age: 40 });
+    if (i !== player.position && item.type === "grass" && item.age >= 40) {
+      _.remove(hex.objects, (e) => e.name === "item");
+      hex.objects.push({ name: "item", type: "trees", age: 40 });
     }
 
-    base = _.cloneDeep(_.find(hex?.objects, { name: "base" }));
+    item = _.cloneDeep(_.find(hex?.objects, { name: "item" }));
 
     // Adds/removes move & attack state if within moveable area
     if (_.find(playerNeighbours, { x: hex.x, y: hex.y })) {
-      if (attackTypes.includes(base.type)) {
+      if (attackTypes.includes(item.type)) {
         hex.objects.push({ name: "state", type: "attack" });
       }
 
-      if (moveTypes.includes(base.type)) {
+      if (moveTypes.includes(item.type)) {
         hex.objects.push({ name: "state", type: "move" });
       }
     } else {
@@ -57,13 +57,13 @@ export const handleHexStates = async () => {
   // Every 20th round, Add pickup to a random grass block
   if (game.round % 20 === 0 && !game.chestSpawned.includes(game.round)) {
     const allGrass = _.filter(grid, {
-      objects: [{ name: "base", type: "grass" }],
+      objects: [{ name: "item", type: "grass" }],
     });
 
     const randGrass = allGrass[_.random(allGrass.length)];
 
-    _.remove(randGrass.objects, (e) => e.name === "base" && e.type === "grass");
-    randGrass.objects.push({ name: "base", type: "pickup", age: 0 });
+    _.remove(randGrass.objects, (e) => e.name === "item" && e.type === "grass");
+    randGrass.objects.push({ name: "item", type: "pickup", age: 0 });
 
     game.chestSpawned.push(game.round);
   }

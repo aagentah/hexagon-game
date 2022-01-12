@@ -12,7 +12,7 @@ function Hex({ x, y, i }) {
   const inputRef = useRef();
   const [grid, setGrid] = useRecoilState(gridState);
   const curr = grid[i];
-  const base = _.find(curr?.objects, { name: "base" });
+  const item = _.find(curr?.objects, { name: "item" });
 
   const replaceItemAtIndex = (arr, index, newValue) => {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
@@ -33,7 +33,7 @@ function Hex({ x, y, i }) {
         },
         objects: [
           { name: "state", type: null },
-          { name: "base", type: "grass", age: 0 },
+          { name: "item", type: "grass", age: 0 },
         ],
       },
     ]);
@@ -42,9 +42,7 @@ function Hex({ x, y, i }) {
   return (
     <>
       <div
-        className={`hex  base--${base?.name && base.name}  base--${
-          base?.type && base.type
-        }`}
+        className={`hex  hex--${item?.name}  hex--${item?.type}`}
         ref={inputRef}
         data-x={x}
         data-y={y}
