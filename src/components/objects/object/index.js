@@ -17,7 +17,7 @@ function Object({ hex, object }) {
   if (name === "base" && type === "small-building-1") {
     return (
       <img
-        className="object"
+        className="object  object--building"
         src={require("../../../images/small-building-1.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
@@ -28,7 +28,7 @@ function Object({ hex, object }) {
   if (name === "base" && type === "trees") {
     return (
       <img
-        className="object"
+        className="object  object--trees"
         src={require("../../../images/trees-1.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
@@ -36,10 +36,10 @@ function Object({ hex, object }) {
     );
   }
 
-  if (name === "base" && (type === "grass" || age >= 10)) {
+  if (name === "base" && type === "grass") {
     return (
       <img
-        className="object"
+        className="object  object--grass"
         src={require("../../../images/grass-1.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
@@ -47,10 +47,32 @@ function Object({ hex, object }) {
     );
   }
 
+  if (name === "base" && type === "dirt") {
+    return (
+      <>
+        <img
+          className="object  object--dirt"
+          src={require("../../../images/dirt.png")}
+          alt="logo"
+          style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+        />
+
+        {age >= 10 && (
+          <img
+            className="object  object--grass"
+            src={require("../../../images/grass-1.png")}
+            alt="logo"
+            style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+          />
+        )}
+      </>
+    );
+  }
+
   if (name === "state" && type === "movable") {
     return (
       <img
-        className="object"
+        className="object  object--state"
         src={require("../../../images/hex-green.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
@@ -62,7 +84,7 @@ function Object({ hex, object }) {
   if (name === "state" && type === "killable") {
     return (
       <img
-        className="object"
+        className="object  object--state"
         src={require("../../../images/hex-red.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}

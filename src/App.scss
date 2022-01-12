@@ -73,10 +73,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // pointer-events: none;
-}
+  object-fit: contain;
 
-.object--player {
-  transition: all 0.5s ease-in-out;
-  transform: scale(1.2);
+  &--building {
+    transform: scale(1.3) translateY(-16px);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  &--player {
+    transition: left 0.5s ease-in-out, right 0.5s ease-in-out,
+      top 0.5s ease-in-out, bottom 0.5s ease-in-out;
+    transform: scale(1.2);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  &--trees {
+    transform: translateY(-8px);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  &--grass {
+    transform: scale(0.8);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  &--dirt {
+    transform: scale(0.8);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &--state {
+    z-index: 1;
+  }
 }
