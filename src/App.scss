@@ -71,6 +71,7 @@
 .object {
   position: absolute;
   width: 80px;
+  // pointer-events: none;
 }
 
 .object--player {

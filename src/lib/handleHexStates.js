@@ -17,10 +17,17 @@ export const handleHexStates = async () => {
   // Loops through grid and sets state
   for (let i = 0; i < grid.length; i++) {
     const hex = grid[i];
-    const base = _.find(hex?.objects, { name: "base" });
+    let base = _.find(hex?.objects, { name: "base" });
 
     // Increments age of base
-    base.age = base.age += 1;
+    base.age = base.age + 1;
+
+    // Changes dirt to grass after certain age
+    if (i !== player.position && base.age >= 20) {
+      _.remove(grid[i].objects, (e) => e.name === "base");
+      grid[i].objects.push({ name: "base", type: "grass", age: 0 });
+      base = _.cloneDeep(_.find(hex?.objects, { name: "base" }));
+    }
 
     // Adds/removes movable & killable state if within moveable area
     if (_.find(movable, { x: hex.x, y: hex.y })) {
@@ -35,8 +42,6 @@ export const handleHexStates = async () => {
       _.remove(hex.objects, (e) => e.name === "state");
     }
   }
-
-  console.log("grid", grid);
 
   await setRecoil(gridState, grid);
 };
