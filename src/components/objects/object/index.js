@@ -36,7 +36,7 @@ function Object({ hex, object }) {
     return <Player hex={hex} object={object} />;
   }
 
-  if (name === "tree") {
+  if (name === "base" && type === "trees") {
     return (
       <img
         className="object"

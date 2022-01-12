@@ -23,15 +23,26 @@ export const handleHexStates = async () => {
     base.age = base.age + 1;
 
     // Changes dirt to grass after certain age
-    if (i !== player.position && base.age >= 20) {
+    if (i !== player.position && base.type === "dirt" && base.age >= 20) {
       _.remove(grid[i].objects, (e) => e.name === "base");
-      grid[i].objects.push({ name: "base", type: "grass", age: 0 });
-      base = _.cloneDeep(_.find(hex?.objects, { name: "base" }));
+      grid[i].objects.push({ name: "base", type: "grass", age: 20 });
     }
+
+    // Changes grass to trees after certain age
+    if (i !== player.position && base.type === "grass" && base.age >= 40) {
+      _.remove(grid[i].objects, (e) => e.name === "base");
+      grid[i].objects.push({ name: "base", type: "trees", age: 40 });
+    }
+
+    base = _.cloneDeep(_.find(hex?.objects, { name: "base" }));
 
     // Adds/removes movable & killable state if within moveable area
     if (_.find(movable, { x: hex.x, y: hex.y })) {
       if (base.type === "grass") {
+        hex.objects.push({ name: "state", type: "killable" });
+      }
+
+      if (base.type === "trees") {
         hex.objects.push({ name: "state", type: "killable" });
       }
 
@@ -42,6 +53,8 @@ export const handleHexStates = async () => {
       _.remove(hex.objects, (e) => e.name === "state");
     }
   }
+
+  console.log("grid", grid);
 
   await setRecoil(gridState, grid);
 };

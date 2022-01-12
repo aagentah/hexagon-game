@@ -11,11 +11,20 @@ const postAnimation = async (i, x, y) => {
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
   const game = _.cloneDeep(getRecoil(gameState));
-  // const hexPlayer = _.find(grid[currentPos].objects, { name: "player" });
+  const base = _.find(grid[i]?.objects, { name: "base" });
 
   // Kills grass
-  _.remove(grid[i].objects, (e) => e.name === "base");
-  grid[i].objects.push({ name: "base", type: "dirt", age: 0 });
+  if (base.type === "grass") {
+    _.remove(grid[i].objects, (e) => e.name === "base");
+    grid[i].objects.push({ name: "base", type: "dirt", age: 0 });
+  }
+
+  // Kills trees
+  if (base.type === "trees") {
+    _.remove(grid[i].objects, (e) => e.name === "base");
+    grid[i].objects.push({ name: "base", type: "grass", age: 20 });
+  }
+
   game.round = game.round + 1;
 
   // Resets animations in the hexPlayer
