@@ -228,7 +228,6 @@ body {
     left: 20px;
     width: 60px;
     height: 5px;
-    background: #a7d07c;
     z-index: 1;
   }
 
@@ -239,7 +238,6 @@ body {
     left: 50px;
     width: 60px;
     height: 5px;
-    background: #81bb44;
     z-index: 1;
     transform: rotate(-60deg);
   }
@@ -248,30 +246,86 @@ body {
 .hex {
   &--player {
     background-color: #806854;
+
+    &:after {
+      background: lighten(#806854, 10%);
+    }
+
+    &:before {
+      background: darken(#806854, 10%);
+    }
   }
 
   &--trees {
     background-color: #94c85c;
+
+    &:after {
+      background: lighten(#94c85c, 10%);
+    }
+
+    &:before {
+      background: darken(#94c85c, 10%);
+    }
   }
 
   &--grass {
     background-color: #94c85c;
+
+    &:after {
+      background: lighten(#94c85c, 10%);
+    }
+
+    &:before {
+      background: darken(#94c85c, 10%);
+    }
   }
 
   &--dirt {
     background-color: #806854;
+
+    &:after {
+      background: lighten(#806854, 10%);
+    }
+
+    &:before {
+      background: darken(#806854, 10%);
+    }
   }
 
   &--small-building-1 {
     background-color: #82bf40;
+
+    &:after {
+      background: lighten(#82bf40, 10%);
+    }
+
+    &:before {
+      background: darken(#82bf40, 10%);
+    }
   }
 
   &--pickup {
     background-color: #94c85c;
+
+    &:after {
+      background: lighten(#94c85c, 10%);
+    }
+
+    &:before {
+      background: darken(#94c85c, 10%);
+    }
   }
 
   &--totem {
     background-color: #806854;
+
+    &:after {
+      background: lighten(#806854, 10%);
+    }
+
+    &:before {
+      background: darken(#806854, 10%);
+    }
   }
 }
 
