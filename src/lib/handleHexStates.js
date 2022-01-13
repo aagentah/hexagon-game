@@ -41,7 +41,7 @@ export const handleHexStates = async () => {
     }
 
     // Increments age of item
-    item.age = item.age + 1;
+    item.age++;
 
     // Changes dirt to grass after certain age
     if (i !== player.position && item.type === "dirt" && item.age >= 20) {
@@ -56,7 +56,11 @@ export const handleHexStates = async () => {
     item = _.cloneDeep(hex?.object);
 
     // Get totems
-    if (player.totems.length) {
+    if (
+      i !== player.position &&
+      hex.object.type !== "totem" &&
+      player.totems.length
+    ) {
       for (let i = 0; i < player.totems.length; i++) {
         let totem = player.totems[i];
 

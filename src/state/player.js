@@ -11,7 +11,7 @@ export const playerState = atom({
     stats: {
       attack: 1,
       agility: 1,
-      conjuration: 1,
+      conjuration: 10,
     },
     totems: [],
   }, // default value (aka initial value)

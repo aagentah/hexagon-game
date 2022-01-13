@@ -17,7 +17,7 @@ const postAnimation = async (i, x, y) => {
 
   // Handle pickup
   if (hexPickup) {
-    player.coins = player.coins + 1;
+    player.coins++;
   }
 
   // Asigns new player position
@@ -25,7 +25,7 @@ const postAnimation = async (i, x, y) => {
   grid[currentPos].object = { type: "dirt", age: 0 };
   player.position = i;
   grid[i].object = hexPlayer;
-  game.round = game.round + 1;
+  game.round++;
 
   // Resets animations in the hexPlayer
   hexPlayer.animations.active = false;
