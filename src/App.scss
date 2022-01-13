@@ -39,14 +39,14 @@
 
 @import "hex-style.scss";
 
-#hexGrid {
+.hexGridWrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-#state {
+.state {
   position: absolute;
   top: 20px;
   left: 20px;

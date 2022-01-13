@@ -13,7 +13,7 @@ export const spawnPlayer = async () => {
   // Spawn player on random center hex
 
   player.position = spawnPoint;
-  // grid[spawnPoint].object = { name: "item", type: "dirt", age: 0 };
+  // grid[spawnPoint].object = {  type: "dirt", age: 0 };
 
   grid[spawnPoint].object = {
     type: "player",

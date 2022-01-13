@@ -11,7 +11,7 @@ export const placeTotem = async (i, x, y) => {
   const player = _.cloneDeep(getRecoil(playerState));
 
   // TODO: add check to make sure not placing totem on player or totem or dirt hex etc
-  grid[i].object = { name: "item", type: `totem`, age: 0 };
+  grid[i].object = { type: `totem`, age: 0 };
   player.totems.push({ i, x, y, style: "" });
   game.isSelectingTotem = null;
   game.round = game.round + 1;

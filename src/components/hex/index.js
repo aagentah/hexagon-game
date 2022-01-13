@@ -34,7 +34,7 @@ function Hex({ game, i, x, y }) {
           offsetHeight: inputRef.current.offsetHeight,
           offsetWidth: inputRef.current.offsetWidth,
         },
-        object: { name: "item", type: "grass", age: 0 },
+        object: { type: "grass", age: 0 },
         selector: { type: null },
       },
     ]);
@@ -42,7 +42,6 @@ function Hex({ game, i, x, y }) {
 
   useEffect(() => {
     if (curr) {
-      console.log("change");
       setClss(curr.object.type);
     }
   }, [curr]);

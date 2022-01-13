@@ -21,8 +21,8 @@ const postAnimation = async (i, x, y) => {
   }
 
   // Asigns new player position
-  grid[i].object = { name: "item", type: "dirt", age: 0 };
-  grid[currentPos].object = { name: "item", type: "dirt", age: 0 };
+  grid[i].object = { type: "dirt", age: 0 };
+  grid[currentPos].object = { type: "dirt", age: 0 };
   player.position = i;
   grid[i].object = hexPlayer;
   game.round = game.round + 1;

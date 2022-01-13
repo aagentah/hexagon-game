@@ -4,7 +4,7 @@ import * as _ from "lodash";
 
 function Player({ hex, object }) {
   const { i, x, y, inputRef } = hex;
-  const { name, type, animations } = object;
+  const { type, animations } = object;
   const [offsetTop, setOffsetTop] = useState(inputRef.offsetTop);
   const [offsetLeft, setOffsetLeft] = useState(inputRef.offsetLeft);
   const [sprite, setSprite] = useState("idle");
@@ -32,7 +32,7 @@ function Player({ hex, object }) {
         <SpriteAnimator
           width={32}
           height={32}
-          sprite={require(`../../../../images/wizzard/${sprite}.png`)}
+          sprite={require(`../../../images/wizzard/${sprite}.png`)}
           direction="horizontal"
           shouldAnimate={true}
           fps={8}

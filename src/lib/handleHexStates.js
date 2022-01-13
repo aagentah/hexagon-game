@@ -18,8 +18,6 @@ export const handleHexStates = async () => {
   const attackTypes = ["grass", "trees"];
   const moveTypes = ["dirt", "pickup", "totem-1"];
 
-  console.log("grid", grid);
-
   const addPickup = () => {
     // Every 20th round, Add pickup to a random grass block
     if (game.round % 20 === 0 && !game.chestSpawned.includes(game.round)) {
@@ -27,7 +25,7 @@ export const handleHexStates = async () => {
 
       const randGrass = allGrass[_.random(allGrass.length)];
 
-      randGrass.object = { name: "item", type: "pickup", age: 0 };
+      randGrass.object = { type: "pickup", age: 0 };
 
       game.chestSpawned.push(game.round);
     }
@@ -47,12 +45,12 @@ export const handleHexStates = async () => {
 
     // Changes dirt to grass after certain age
     if (i !== player.position && item.type === "dirt" && item.age >= 20) {
-      hex.object = { name: "item", type: "grass", age: 20 };
+      hex.object = { type: "grass", age: 20 };
     }
 
     // Changes grass to trees after certain age
     if (i !== player.position && item.type === "grass" && item.age >= 40) {
-      hex.object = { name: "item", type: "trees", age: 40 };
+      hex.object = { type: "trees", age: 40 };
     }
 
     item = _.cloneDeep(hex?.object);
@@ -69,7 +67,7 @@ export const handleHexStates = async () => {
 
         // If current hex is totem neighbour, make dirt
         if (_.find(totemNeighbours, { x: hex.x, y: hex.y })) {
-          hex.object = { name: "item", type: "dirt", age: 0 };
+          hex.object = { type: "dirt", age: 0 };
         }
       }
     }

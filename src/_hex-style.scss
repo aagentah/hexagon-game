@@ -301,7 +301,7 @@
 }
 
 //--- TEMPLATE -------------------------------//
-#hexGrid {
+.hexGridWrapper {
   margin: 0 auto;
   //--- SETTINGS -------------- VALUES ---------//
   $gridWidth: 1080px; // 'auto',(px,pt,r/em,vw/h)

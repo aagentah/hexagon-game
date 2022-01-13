@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { SpriteAnimator } from "react-sprite-animator";
 import * as _ from "lodash";
 
-import { movePlayer } from "../../../../lib/movePlayer";
+import { movePlayer } from "../../../lib/movePlayer";
 
 function Pickup({ hex, object }) {
   const { i, x, y, inputRef } = hex;
-  const { name, type, animations } = object;
+  const { type, animations } = object;
   const [offsetTop, setOffsetTop] = useState(inputRef.offsetTop);
   const [offsetLeft, setOffsetLeft] = useState(inputRef.offsetLeft);
 
@@ -14,7 +14,7 @@ function Pickup({ hex, object }) {
     <>
       <img
         className="object  object--dirt"
-        src={require("../../../../images/dirt.png")}
+        src={require("../../../images/dirt.png")}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
       />
@@ -26,7 +26,7 @@ function Pickup({ hex, object }) {
         <SpriteAnimator
           width={32}
           height={32}
-          sprite={require(`../../../../images/bonfire.png`)}
+          sprite={require(`../../../images/bonfire.png`)}
           direction="horizontal"
           shouldAnimate={true}
           fps={8}

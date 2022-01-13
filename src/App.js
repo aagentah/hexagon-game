@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import * as _ from "lodash";
 
 import Hex from "./components/hex";
-import Objects from "./components/objects";
+import Object from "./components/object";
 import Stats from "./components/stats";
 
 import { honeycombState } from "./state/honeycomb";
@@ -47,72 +47,34 @@ function App() {
 
   if (ready) {
     return (
-      <div className="App">
-        {
-          // <header className="App-header">
-          //   <img src={logo} className="App-logo" alt="logo" />
-          //   <p>
-          //     Edit <code>src/App.js</code> and save to reload.
-          //   </p>
-          //   <a
-          //     className="App-link"
-          //     href="https://reactjs.org"
-          //     target="_blank"
-          //     rel="noopener noreferrer"
-          //   >
-          //     Learn React
-          //   </a>
-          // </header>
-        }
-
-        <main>
-          <div id="hexGrid">
-            <div className="hexCrop">
-              <div className="hexGrid">
-                {honeycomb.grid.length &&
-                  honeycomb.grid.map((coords, i) => {
-                    return (
-                      <Hex
-                        key={i}
-                        game={game}
-                        x={coords.x}
-                        y={coords.y}
-                        i={i}
-                      />
-                    );
-                  })}
-              </div>
-            </div>
-
-            {hasInitRound && (
-              <div id="hexGridObjects">
-                {grid.map((hex, i) => {
-                  return <Objects key={i} game={game} hex={hex} />;
+      <main className="App">
+        <div className="hexGridWrapper">
+          <div className="hexCrop">
+            <div className="hexGrid">
+              {honeycomb.grid.length &&
+                honeycomb.grid.map((coords, i) => {
+                  return (
+                    <Hex key={i} game={game} x={coords.x} y={coords.y} i={i} />
+                  );
                 })}
-              </div>
-            )}
+            </div>
           </div>
 
           {hasInitRound && (
-            <div id="state">
-              <Stats game={game} />
+            <div className="hexObjects">
+              {grid.map((hex, i) => {
+                return <Object key={i} game={game} hex={hex} />;
+              })}
             </div>
           )}
-        </main>
+        </div>
 
-        {
-          // <footer>
-          //   <p>
-          //     Thanks to{" "}
-          //     <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">
-          //       CSS-Tricks
-          //     </a>
-          //     , <a href="http://csshexagon.com/">CSS Hexagon, Please</a> and{" "}
-          //     <a href="https://simpleicons.org/">Simple Icons</a>.
-          //   </p>
-          // </footer>
-        }
-      </div>
+        {hasInitRound && (
+          <div className="state">
+            <Stats game={game} />
+          </div>
+        )}
+      </main>
     );
   }
 

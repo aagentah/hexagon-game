@@ -17,12 +17,12 @@ const postAnimation = async (i, x, y) => {
 
   // Kills grass
   if (item.type === "grass") {
-    grid[i].object = { name: "item", type: "dirt", age: 0 };
+    grid[i].object = {  type: "dirt", age: 0 };
   }
 
   // Kills trees
   if (item.type === "trees") {
-    grid[i].object = { name: "item", type: "grass", age: 20 };
+    grid[i].object = {  type: "grass", age: 20 };
   }
 
   game.round = game.round + 1;
