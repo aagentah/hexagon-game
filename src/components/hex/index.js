@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import * as _ from "lodash";
 
 import { gridState } from "../../state/grid";
-import { placeTotem } from "../../lib/placeTotem";
+import { totemPlace } from "../../lib/totemPlace";
 
 function Hex({ game, i, x, y }) {
   const inputRef = useRef();
@@ -17,7 +17,7 @@ function Hex({ game, i, x, y }) {
 
   const handleClick = () => {
     if (game.isSelectingTotem) {
-      placeTotem(i, x, y);
+      totemPlace(i, x, y);
     }
   };
 

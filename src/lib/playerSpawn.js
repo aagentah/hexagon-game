@@ -4,7 +4,7 @@ import { getRecoil, setRecoil } from "recoil-nexus";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
 
-export const spawnPlayer = async () => {
+export const playerSpawn = async () => {
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
   const centerHexes = [52, 66, 67, 68];

@@ -58,7 +58,7 @@ const animation = async (i, x, y) => {
   await setRecoil(gameState, game);
 };
 
-export const movePlayer = async (i, x, y) => {
+export const playerMove = async (i, x, y) => {
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));
 

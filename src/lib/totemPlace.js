@@ -5,7 +5,7 @@ import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
 
-export const placeTotem = async (i, x, y) => {
+export const totemPlace = async (i, x, y) => {
   const game = _.cloneDeep(getRecoil(gameState));
   const grid = _.cloneDeep(getRecoil(gridState));
   const player = _.cloneDeep(getRecoil(playerState));

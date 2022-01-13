@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { SpriteAnimator } from "react-sprite-animator";
 import * as _ from "lodash";
 
-import { movePlayer } from "../../../lib/movePlayer";
+import { playerMove } from "../../../lib/playerMove";
 
 function Pickup({ hex, object }) {
   const { i, x, y, inputRef } = hex;

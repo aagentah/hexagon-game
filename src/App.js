@@ -10,7 +10,7 @@ import { honeycombState } from "./state/honeycomb";
 import { gridState } from "./state/grid";
 import { gameState } from "./state/game";
 
-import { spawnPlayer } from "./lib/spawnPlayer";
+import { playerSpawn } from "./lib/playerSpawn";
 import { handleHexStates } from "./lib/handleHexStates";
 
 import logo from "./logo.svg";
@@ -29,7 +29,7 @@ function App() {
 
     // Spawn player
     if (game.round === 0) {
-      await spawnPlayer({ grid, game });
+      await playerSpawn({ grid, game });
     }
 
     await handleHexStates();

@@ -4,7 +4,7 @@ import * as _ from "lodash";
 
 import { playerState } from "../../state/player";
 import { increaseStats } from "../../lib/increaseStats";
-import { selectingTotem } from "../../lib/selectingTotem";
+import { totemSelecting } from "../../lib/totemSelecting";
 
 function Stats({ game }) {
   const [player, setPlayer] = useRecoilState(playerState);
@@ -47,7 +47,7 @@ function Stats({ game }) {
       <div
         onClick={() => {
           if (stats.conjuration > player.totems.length) {
-            selectingTotem("1");
+            totemSelecting("1");
           }
         }}
       >
@@ -56,8 +56,8 @@ function Stats({ game }) {
       <br />
       {game.isSelectingTotem && <>(Place Totem on board!)</>}
       {
-        // <div onClick={() => selectingTotem("2")}>Totem: 2</div>
-        // <div onClick={() => selectingTotem("3")}>Totem: 3</div>
+        // <div onClick={() => totemSelecting("2")}>Totem: 2</div>
+        // <div onClick={() => totemSelecting("3")}>Totem: 3</div>
       }
     </>
   );

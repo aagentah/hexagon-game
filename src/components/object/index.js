@@ -3,7 +3,7 @@ import * as _ from "lodash";
 import Player from "./player";
 import Pickup from "./pickup";
 
-import { movePlayer } from "../../lib/movePlayer";
+import { playerMove } from "../../lib/playerMove";
 import { playerAttack } from "../../lib/playerAttack";
 
 function Object({ game, hex }) {
@@ -17,7 +17,7 @@ function Object({ game, hex }) {
           src={require("../../images/hex-green.png")}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
-          onClick={() => !game.isAnimating && movePlayer(i, x, y)}
+          onClick={() => !game.isAnimating && playerMove(i, x, y)}
         />
       );
     }
