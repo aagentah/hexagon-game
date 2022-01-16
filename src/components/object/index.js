@@ -14,7 +14,7 @@ function Object({ game, hex }) {
       return (
         <img
           className="object  object--state"
-          src={require("../../images/hex-green.png")}
+          src={process.env.PUBLIC_URL + "/images/hex-green.png"}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
           onClick={() => !game.isAnimating && playerMove(i, x, y)}
@@ -26,7 +26,7 @@ function Object({ game, hex }) {
       return (
         <img
           className="object  object--state"
-          src={require("../../images/hex-red.png")}
+          src={process.env.PUBLIC_URL + "/images/hex-red.png"}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
           onClick={() => !game.isAnimating && playerAttack(i, x, y)}
@@ -35,27 +35,13 @@ function Object({ game, hex }) {
     }
   };
 
-  if (object.type === "player") {
-    return (
-      <>
-        <img
-          className="object  object--dirt"
-          src={require("../../images/dirt.png")}
-          alt="logo"
-          style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
-        />
-        <Player hex={hex} object={object} />
-      </>
-    );
-  }
-
   if (object.type === "totem") {
     return (
       <>
         {renderSelector()}
         <img
           className="object  object--building"
-          src={require("../../images/small-building-1.png")}
+          src={process.env.PUBLIC_URL + "/images/small-building-1.png"}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
         />
@@ -78,7 +64,7 @@ function Object({ game, hex }) {
         {renderSelector()}
         <img
           className="object  object--trees"
-          src={require("../../images/trees-1.png")}
+          src={process.env.PUBLIC_URL + "/images/trees-1.png"}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
         />
@@ -92,7 +78,7 @@ function Object({ game, hex }) {
         {renderSelector()}
         <img
           className="object  object--grass"
-          src={require("../../images/grass-1.png")}
+          src={process.env.PUBLIC_URL + "/images/grass-1.png"}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
         />
@@ -107,7 +93,7 @@ function Object({ game, hex }) {
 
         <img
           className="object  object--dirt"
-          src={require("../../images/dirt.png")}
+          src={process.env.PUBLIC_URL + "/images/dirt.png"}
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
         />
@@ -115,11 +101,25 @@ function Object({ game, hex }) {
         {object.age >= 10 && (
           <img
             className="object  object--grass"
-            src={require("../../images/grass-1.png")}
+            src={process.env.PUBLIC_URL + "/images/grass-1.png"}
             alt="logo"
             style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
           />
         )}
+      </>
+    );
+  }
+
+  if (object.type === "player") {
+    return (
+      <>
+        <img
+          className="object  object--dirt"
+          src={process.env.PUBLIC_URL + "/images/dirt.png"}
+          alt="logo"
+          style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+        />
+        <Player hex={hex} object={object} />
       </>
     );
   }

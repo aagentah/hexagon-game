@@ -48,25 +48,6 @@ function App() {
   if (ready) {
     return (
       <main className="App">
-        <div className="rockface  rockface--1" />
-        <div className="ground" />
-        <div className="rockface  rockface--2" />
-        <div className="rockface  rockface--3" />
-        <div className="rockface  rockface--4" />
-        <div className="rockface  rockface--5" />
-        <div className="rockface  rockface--6" />
-        <div className="rockface  rockface--7" />
-        <div className="rockface  rockface--8" />
-        <div className="rockface  rockface--9" />
-        <div className="rockface  rockface--10" />
-        <div className="rockface  rockface--11" />
-        <div className="rockface  rockface--12" />
-        <div className="rockface  rockface--13" />
-        <div className="rockface  rockface--14" />
-        <div className="rockface  rockface--15" />
-        <div className="rockface  rockface--16" />
-        <div className="rockface  rockface--17" />
-
         <div className="hexGridWrapper">
           <div className="hexCrop">
             <div className="hexGrid">

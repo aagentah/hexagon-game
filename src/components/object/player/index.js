@@ -18,7 +18,7 @@ function Player({ hex, object }) {
       setSprite(`walk-${animations.facing}`);
       setFrames(animations.frames[animations.facing]);
     } else {
-      setSprite("idle");
+      // setSprite("idle");
       setFrames(1);
     }
   }, [animations.active, animations.offsetTop, animations.facing]);
@@ -32,7 +32,7 @@ function Player({ hex, object }) {
         <SpriteAnimator
           width={32}
           height={32}
-          sprite={require(`../../../images/wizzard/${sprite}.png`)}
+          sprite={process.env.PUBLIC_URL + `/images/wizzard/${sprite}.png`}
           direction="horizontal"
           shouldAnimate={true}
           fps={8}

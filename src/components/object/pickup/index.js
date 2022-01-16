@@ -14,7 +14,7 @@ function Pickup({ hex, object }) {
     <>
       <img
         className="object  object--dirt"
-        src={require("../../../images/dirt.png")}
+        src={process.env.PUBLIC_URL + "/images/dirt.png"}
         alt="logo"
         style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
       />
@@ -26,7 +26,7 @@ function Pickup({ hex, object }) {
         <SpriteAnimator
           width={32}
           height={32}
-          sprite={require(`../../../images/bonfire.png`)}
+          sprite={process.env.PUBLIC_URL + "/images/bonfire.png"}
           direction="horizontal"
           shouldAnimate={true}
           fps={8}
