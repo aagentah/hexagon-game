@@ -58,6 +58,20 @@ function Object({ game, hex }) {
     );
   }
 
+  if (object.type === "peak") {
+    return (
+      <>
+        {renderSelector()}
+        <img
+          className="object  object--peak"
+          src={process.env.PUBLIC_URL + `/images/${object.asset}.png`}
+          alt="logo"
+          style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+        />
+      </>
+    );
+  }
+
   if (object.type === "trees") {
     return (
       <>
@@ -98,7 +112,7 @@ function Object({ game, hex }) {
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
         />
 
-        {object.age >= 10 && (
+        {object.age >= game.grassSpawn / 2 && (
           <img
             className="object  object--grass"
             src={process.env.PUBLIC_URL + "/images/grass-1.png"}

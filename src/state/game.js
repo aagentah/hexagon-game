@@ -7,5 +7,9 @@ export const gameState = atom({
     chestSpawned: [],
     isAnimating: false,
     isSelectingTotem: null,
-  }, // default value (aka initial value)
+    difficulty: 1, // of 100%
+    grassSpawn: 15, // default
+    treesSpawn: 20, // default
+    peakSpawn: 30, // default
+  },
 });

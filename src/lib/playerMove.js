@@ -18,6 +18,8 @@ const postAnimation = async (i, x, y) => {
   // Handle pickup
   if (hexPickup) {
     player.coins++;
+    // game.grassSpawn -= game.chestSpawned.length;
+    // game.trees -= game.chestSpawned.length;
   }
 
   // Asigns new player position

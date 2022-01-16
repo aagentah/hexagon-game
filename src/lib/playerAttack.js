@@ -22,7 +22,12 @@ const postAnimation = async (i, x, y) => {
 
   // Kills trees
   if (item.type === "trees") {
-    grid[i].object = { type: "grass", age: 20 };
+    grid[i].object = { type: "grass", age: 0 };
+  }
+
+  // Kills peak
+  if (item.type === "peak") {
+    grid[i].object = { type: "trees", age: 0 };
   }
 
   game.round++;

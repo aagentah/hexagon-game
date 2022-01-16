@@ -15,18 +15,18 @@ export const handleHexStates = async () => {
   const playerNeighbours = honeycomb.grid.neighborsOf(
     honeycomb.hex(playerPosHex.x, playerPosHex.y)
   );
-  const attackTypes = ["grass", "trees"];
+  const attackTypes = ["grass", "trees", "peak"];
   const moveTypes = ["dirt", "pickup", "totem-1"];
 
   const addPickup = () => {
     // Every 20th round, Add pickup to a random grass block
     if (game.round % 20 === 0 && !game.chestSpawned.includes(game.round)) {
       const allGrass = _.filter(grid, { object: { type: "grass" } });
+      const allTrees = _.filter(grid, { object: { type: "trees" } });
+      const combined = [...allGrass, ...allTrees];
+      const rand = combined[_.random(combined.length)];
 
-      const randGrass = allGrass[_.random(allGrass.length)];
-
-      randGrass.object = { type: "pickup", age: 0 };
-
+      rand.object = { type: "pickup", age: 0 };
       game.chestSpawned.push(game.round);
     }
   };
@@ -44,13 +44,42 @@ export const handleHexStates = async () => {
     item.age++;
 
     // Changes dirt to grass after certain age
-    if (i !== player.position && item.type === "dirt" && item.age >= 20) {
-      hex.object = { type: "grass", age: 20 };
+    if (
+      i !== player.position &&
+      item.type === "dirt" &&
+      item.age >= game.grassSpawn
+    ) {
+      hex.object = { type: "grass", age: 0 };
     }
 
     // Changes grass to trees after certain age
-    if (i !== player.position && item.type === "grass" && item.age >= 40) {
-      hex.object = { type: "trees", age: 40 };
+    if (
+      i !== player.position &&
+      item.type === "grass" &&
+      item.age >=
+        _.random(
+          game.treesSpawn,
+          game.treesSpawn * 100 - game.chestSpawned.length
+        )
+    ) {
+      hex.object = { type: "trees", age: 0 };
+    }
+
+    // Changes grass to peak after certain age
+    if (
+      i !== player.position &&
+      item.type === "trees" &&
+      item.age >=
+        _.random(
+          game.peakSpawn,
+          game.peakSpawn * 100 - game.chestSpawned.length
+        )
+    ) {
+      hex.object = {
+        type: "peak",
+        age: 0,
+        asset: _.sample(["peak-1", "peak-2"]),
+      };
     }
 
     item = _.cloneDeep(hex?.object);
@@ -75,6 +104,8 @@ export const handleHexStates = async () => {
         }
       }
     }
+
+    item = _.cloneDeep(hex?.object);
 
     // If current hex within playerNeighbours, Adds/removes move & attack state if within moveable area
     if (_.find(playerNeighbours, { x: hex.x, y: hex.y })) {
