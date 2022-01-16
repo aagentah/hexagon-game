@@ -18,7 +18,7 @@ function Player({ hex, object }) {
       setSprite(`walk-${animations.facing}`);
       setFrames(animations.frames[animations.facing]);
     } else {
-      // setSprite("idle");
+      setSprite("idle");
       setFrames(1);
     }
   }, [animations.active, animations.offsetTop, animations.facing]);
@@ -37,7 +37,7 @@ function Player({ hex, object }) {
           shouldAnimate={true}
           fps={8}
           frameCount={frames}
-          startFrame={0}
+          startFrame={1}
           stopLastFrame={false}
           reset={null}
           wrapAfter={8}

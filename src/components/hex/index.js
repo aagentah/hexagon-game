@@ -55,7 +55,9 @@ function Hex({ game, i, x, y }) {
         data-x={x}
         data-y={y}
         data-i={i}
-      ></div>
+      >
+        <div className="debug"> {i}</div>
+      </div>
     </>
   );
 }

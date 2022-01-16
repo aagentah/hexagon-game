@@ -21,7 +21,6 @@ const postAnimation = async (i, x, y) => {
   }
 
   // Asigns new player position
-  grid[i].object = { type: "dirt", age: 0 };
   grid[currentPos].object = { type: "dirt", age: 0 };
   player.position = i;
   grid[i].object = hexPlayer;
@@ -52,8 +51,6 @@ const animation = async (i, x, y) => {
   hexPlayer.animations.offsetTop = grid[i].inputRef.offsetTop;
   hexPlayer.animations.facing = targetDirection(i, x, y);
   game.isAnimating = true;
-
-  console.log("2");
 
   await setRecoil(playerState, player);
   await setRecoil(gridState, grid);

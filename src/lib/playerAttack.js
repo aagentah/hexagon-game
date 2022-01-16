@@ -34,8 +34,6 @@ const postAnimation = async (i, x, y) => {
   hexPlayer.animations.facing = null;
   game.isAnimating = false;
 
-  console.log("1");
-
   await setRecoil(playerState, player);
   await setRecoil(gridState, grid);
   await setRecoil(gameState, game);
