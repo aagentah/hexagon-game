@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { SpriteAnimator } from "react-sprite-animator";
 import * as _ from "lodash";
 
+import Sprite from "./sprite";
+
 function Player({ hex, object }) {
   const { i, x, y, inputRef } = hex;
   const { type, animations } = object;
@@ -29,18 +31,11 @@ function Player({ hex, object }) {
         className="object  object--player"
         style={{ top: offsetTop, left: offsetLeft }}
       >
-        <SpriteAnimator
-          width={32}
-          height={32}
-          sprite={process.env.PUBLIC_URL + `/images/wizzard/${sprite}.png`}
-          direction="horizontal"
-          shouldAnimate={true}
-          fps={8}
-          frameCount={frames}
-          startFrame={1}
-          stopLastFrame={false}
-          reset={null}
-          wrapAfter={8}
+        <Sprite
+          image={`/images/wizzard/${sprite}.png`}
+          size={32}
+          count={4}
+          speed={100}
         />
       </div>
     </>
