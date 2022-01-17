@@ -26,6 +26,23 @@ function App() {
   const [hasInitRound, setHasInitRound] = useState(false);
   const [ready, setReady] = useState(false);
 
+  const images = [
+    "/images/dirt.png",
+    "/images/grass-1.png",
+    "/images/peak-1.png",
+    "/images/peak-2.png",
+    "/images/trees-1.png",
+    "/images/small-building-1.png",
+    "/images/bonfire.png",
+    "/images/wizzard/idle.png",
+    "/images/wizzard/walk-N.png",
+    "/images/wizzard/walk-NE.png",
+    "/images/wizzard/walk-NW.png",
+    "/images/wizzard/walk-S.png",
+    "/images/wizzard/walk-SE.png",
+    "/images/wizzard/walk-SW.png",
+  ];
+
   useEffect(async () => {
     if (!grid.length) return;
 
@@ -78,6 +95,10 @@ function App() {
             <Stats game={game} />
           </div>
         )}
+
+        {images.map((image, i) => {
+          return <img className="preload" key={i} src={image} />;
+        })}
       </main>
     );
   }
