@@ -20,6 +20,11 @@ export const captionState = atom({
         hasTriggered: false,
         triggerOnce: true,
       },
+      peak: {
+        text: "Rocks?! I thought the trees looked tough...",
+        hasTriggered: false,
+        triggerOnce: true,
+      },
       totem: {
         text: "Those look helpful :)",
         hasTriggered: false,

@@ -79,6 +79,7 @@ export const handleHexStates = async () => {
           game.peakSpawn * 100 - game.chestSpawned.length
         )
     ) {
+      setCaption({ type: "peak" });
       hex.object = {
         type: "peak",
         age: 0,
