@@ -9,6 +9,7 @@ import Stats from "./components/stats";
 import { honeycombState } from "./state/honeycomb";
 import { gridState } from "./state/grid";
 import { gameState } from "./state/game";
+import { captionState } from "./state/caption";
 
 import { playerSpawn } from "./lib/playerSpawn";
 import { handleHexStates } from "./lib/handleHexStates";
@@ -20,6 +21,7 @@ function App() {
   const [honeycomb, setHoneycomb] = useRecoilState(honeycombState);
   const [grid, setGrid] = useRecoilState(gridState);
   const [game, setGame] = useRecoilState(gameState);
+  const [caption, setCaption] = useRecoilState(captionState);
   const [hasRendered, setHasRendered] = useState(false);
   const [hasInitRound, setHasInitRound] = useState(false);
   const [ready, setReady] = useState(false);
@@ -63,7 +65,9 @@ function App() {
           {hasInitRound && (
             <div className="hexObjects">
               {grid.map((hex, i) => {
-                return <Object key={i} game={game} hex={hex} />;
+                return (
+                  <Object key={i} game={game} hex={hex} caption={caption} />
+                );
               })}
             </div>
           )}

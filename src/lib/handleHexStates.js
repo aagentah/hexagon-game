@@ -5,6 +5,7 @@ import { honeycombState } from "../state/honeycomb";
 import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
+import { setCaption } from "../lib/setCaption";
 
 export const handleHexStates = async () => {
   const honeycomb = getRecoil(honeycombState);
@@ -17,6 +18,8 @@ export const handleHexStates = async () => {
   );
   const attackTypes = ["grass", "trees", "peak"];
   const moveTypes = ["dirt", "pickup", "totem-1"];
+
+  if (game.round === 0) setCaption({ type: "pickup" });
 
   const addPickup = () => {
     // Every 20th round, Add pickup to a random grass block
@@ -62,6 +65,7 @@ export const handleHexStates = async () => {
           game.treesSpawn * 100 - game.chestSpawned.length
         )
     ) {
+      setCaption({ type: "trees" });
       hex.object = { type: "trees", age: 0 };
     }
 

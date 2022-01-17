@@ -361,7 +361,30 @@ body {
       top 0.5s ease-in-out, bottom 0.5s ease-in-out;
     transform: scale(1.2);
     pointer-events: none;
-    z-index: 3;
+    z-index: 4;
+    // position: relative;
+
+    &__caption {
+      position: absolute;
+      top: -15px;
+      left: 0;
+      right: 0;
+      background-color: white;
+      font-size: 10px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    &__caption:before {
+      content: "";
+      position: absolute;
+      top: 95%;
+      left: 35px;
+      width: 0;
+      border-top: 8px solid white;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
   }
 
   &--peak {

@@ -6,6 +6,8 @@ import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
 
+import { setCaption } from "../lib/setCaption";
+
 export const totemPlace = async (i, x, y) => {
   const honeycomb = getRecoil(honeycombState);
   const game = _.cloneDeep(getRecoil(gameState));
@@ -17,6 +19,7 @@ export const totemPlace = async (i, x, y) => {
     return;
   }
 
+  setCaption({ type: "totem" });
   grid[i].object = { type: `totem`, age: 0 };
   player.totems.push({ i, x, y, style: "" });
   game.isSelectingTotem = null;

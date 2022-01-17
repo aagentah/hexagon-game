@@ -5,6 +5,7 @@ import { gameState } from "../state/game";
 import { gridState } from "../state/grid";
 import { playerState } from "../state/player";
 
+import { setCaption } from "../lib/setCaption";
 import { targetDirection } from "../functions/targetDirection";
 
 const postAnimation = async (i, x, y) => {
@@ -18,8 +19,8 @@ const postAnimation = async (i, x, y) => {
   // Handle pickup
   if (hexPickup) {
     player.coins++;
-    // game.grassSpawn -= game.chestSpawned.length;
-    // game.trees -= game.chestSpawned.length;
+
+    setCaption({ type: "bonfire" });
   }
 
   // Asigns new player position

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { getRecoil } from "recoil-nexus";
 import { SpriteAnimator } from "react-sprite-animator";
 import * as _ from "lodash";
 
 import Sprite from "./sprite";
 
-function Player({ hex, object }) {
+function Player({ hex, object, caption }) {
   const { i, x, y, inputRef } = hex;
   const { type, animations } = object;
   const [offsetTop, setOffsetTop] = useState(inputRef.offsetTop);
@@ -25,12 +26,26 @@ function Player({ hex, object }) {
     }
   }, [animations.active, animations.offsetTop, animations.facing]);
 
+  // Animates the Player image
+  useEffect(() => {
+    console.log("caption", caption.caption);
+  }, [caption.caption]);
+
   return (
     <>
       <div
         className="object  object--player"
         style={{ top: offsetTop, left: offsetLeft }}
       >
+        {caption.caption ? (
+          <span
+            className="object--player__caption"
+            style={{ width: caption.caption.length * 5 }}
+          >
+            {caption.caption}
+          </span>
+        ) : null}
+
         <Sprite
           image={`/images/wizzard/${sprite}.png`}
           size={32}

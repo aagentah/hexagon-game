@@ -6,7 +6,7 @@ import Pickup from "./pickup";
 import { playerMove } from "../../lib/playerMove";
 import { playerAttack } from "../../lib/playerAttack";
 
-function Object({ game, hex }) {
+function Object({ game, hex, caption }) {
   const { i, x, y, inputRef, object, selector } = hex;
 
   const renderSelector = () => {
@@ -133,7 +133,7 @@ function Object({ game, hex }) {
           alt="logo"
           style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
         />
-        <Player hex={hex} object={object} />
+        <Player hex={hex} object={object} caption={caption} />
       </>
     );
   }
