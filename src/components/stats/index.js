@@ -34,16 +34,22 @@ function Stats({ game }) {
     <>
       <div>Coins: {player.coins}</div>
       <br />
-      <div>
-        Attack: {stats.attack} {increaseBtn("attack")}
+
+      <div className="stats__row">
+        <span>Attack: {stats.attack}</span>
+        <span>{increaseBtn("attack")}</span>
       </div>
-      <div>
-        Agility: {stats.agility} {increaseBtn("agility")}
+
+      <div className="stats__row">
+        <span>Agility: {stats.agility}</span>{" "}
+        <span>{increaseBtn("agility")}</span>
       </div>
-      <div>
-        Conjuration: {stats.conjuration} {increaseBtn("conjuration")}
+
+      <div className="stats__row">
+        <span>Conjuration: {stats.conjuration}</span>{" "}
+        <span>{increaseBtn("conjuration")}</span>
       </div>
-      <br />
+
       <div
         onClick={() => {
           if (stats.conjuration > player.totems.length) {
@@ -51,7 +57,7 @@ function Stats({ game }) {
           }
         }}
       >
-        Totem: 1
+        <img src="https://via.placeholder.com/50x50" />
       </div>
       <br />
       {game.isSelectingTotem && <>(Place Totem on board!)</>}

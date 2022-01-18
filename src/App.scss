@@ -199,14 +199,24 @@ body {
   transform: translate(-50%, -50%);
 }
 
+// Stats
+
 .state {
   position: absolute;
-  top: 20px;
+  width: 200px;
   left: 20px;
+  top: 50%;
+  transform: translate(0%, -50%);
   padding: 30px;
   border-radius: 10px;
-  border: 2px solid black;
-  background: white;
+  border: 2px solid lighten(#806854, 20%);
+  background: lighten(#806854, 50%);
+}
+
+.stats__row {
+  display: flex;
+  align-items: center;
+  place-content: space-between;
 }
 
 .increase-button {
