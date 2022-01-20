@@ -7,7 +7,21 @@ import { playerMove } from "../../lib/playerMove";
 import { playerAttack } from "../../lib/playerAttack";
 
 function Object({ game, hex, caption }) {
-  const { i, x, y, inputRef, object, selector } = hex;
+  const { i, x, y, inputRef, object, selector, npc } = hex;
+
+  const renderNpc = () => {
+    if (npc) {
+      return (
+        <img
+          className="object  object--state"
+          src={process.env.PUBLIC_URL + "/images/wizzard/projectile.png"}
+          alt="logo"
+          style={{ top: inputRef.offsetTop, left: inputRef.offsetLeft }}
+          onClick={() => !game.isAnimating && playerMove(i, x, y)}
+        />
+      );
+    }
+  };
 
   const renderSelector = () => {
     if (selector && selector.type === "move") {
@@ -38,6 +52,7 @@ function Object({ game, hex, caption }) {
   if (object.type === "totem") {
     return (
       <>
+        {renderNpc()}
         {renderSelector()}
         <img
           className="object  object--building"
@@ -52,6 +67,7 @@ function Object({ game, hex, caption }) {
   if (object.type === "pickup") {
     return (
       <>
+        {renderNpc()}
         {renderSelector()}
         <Pickup hex={hex} object={object} />
       </>
@@ -61,6 +77,7 @@ function Object({ game, hex, caption }) {
   if (object.type === "peak") {
     return (
       <>
+        {renderNpc()}
         {renderSelector()}
         <img
           className="object  object--peak"
@@ -75,6 +92,7 @@ function Object({ game, hex, caption }) {
   if (object.type === "trees") {
     return (
       <>
+        {renderNpc()}
         {renderSelector()}
         <img
           className="object  object--trees"
@@ -89,6 +107,7 @@ function Object({ game, hex, caption }) {
   if (object.type === "grass") {
     return (
       <>
+        {renderNpc()}
         {renderSelector()}
         <img
           className="object  object--grass"
@@ -103,6 +122,7 @@ function Object({ game, hex, caption }) {
   if (object.type === "dirt") {
     return (
       <>
+        {renderNpc()}
         {renderSelector()}
 
         <img

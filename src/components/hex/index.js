@@ -35,6 +35,7 @@ function Hex({ game, i, x, y }) {
           offsetWidth: inputRef.current.offsetWidth,
         },
         object: { type: "grass", age: 0 },
+        npc: null, // { target: 12 }
         selector: { type: null },
       },
     ]);
